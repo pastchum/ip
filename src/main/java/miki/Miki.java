@@ -11,7 +11,7 @@ public class Miki {
             "   / /  / // // /| |_/ /   \n" + //
             "  /_/  /_/___/_/ |_/___/   \n" +
             "                           \n" +
-            "           ₍ᐢ•`ᴥ´•ᐢ₎       "; //
+            "          ฅ^•ﻌ•^ฅ         "; //
 
     private static String intro = "____________________________________________________________\n" + //
             "Hello from \n"
@@ -75,10 +75,27 @@ public class Miki {
                 return;
             }
             Task task = tasks[taskNumber - 1];
-            task.toggleCompletion();
-            System.out.println(
-                    "Task " + (inputs[0].toLowerCase().equals("mark") ? "" : "not ") + "completed.\n"
-                            + task.toString());
+            if (inputs[0].toLowerCase().equals("mark")) {
+                if (task.checkCompleted()) {
+                    System.out.println(
+                            "Task " + taskNumber + " has already been completed.\n");
+                    return;
+                }
+                task.toggleCompletion();
+                System.out.println(
+                        "Task " + taskNumber + " completed.\n"
+                                + task.toString());
+            } else {
+                if (!task.checkCompleted()) {
+                    System.out.println(
+                            "Task " + taskNumber + " has yet to be completed.\n");
+                    return;
+                }
+                task.toggleCompletion();
+                System.out.println(
+                        "Task " + taskNumber + " is not completed.\n"
+                                + task.toString());
+            }
             return;
         }
         // add input as a task

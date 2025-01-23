@@ -13,6 +13,10 @@ public class Task {
         this.isCompleted = !this.isCompleted;
     }
 
+    public boolean checkCompleted() {
+        return isCompleted;
+    }
+
     @Override
     public String toString() {
         return "[" + (isCompleted ? "X" : " ") + "]" + description;
