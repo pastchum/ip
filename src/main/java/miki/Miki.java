@@ -1,5 +1,7 @@
 package miki;
 
+import miki.task.*;
+
 import java.util.Scanner;
 
 public class Miki {
@@ -18,6 +20,9 @@ public class Miki {
             "\n"
             + "Please enter a command to start: \n";
 
+    private static Task[] tasks = new Task[100];
+    private static int taskCount = 0;
+
     public static void main(String[] args) {
         System.out.println(intro);
 
@@ -31,10 +36,29 @@ public class Miki {
                 System.out.println("____________________________________________________________\n");
                 break;
             }
-            System.out.println(input + "\n");
+            handleInput(input);
 
             System.out.println("____________________________________________________________\n");
         }
         sc.close();
+    }
+
+    public static void handleInput(String input) {
+        if (input.toLowerCase().equals("list")) {
+            if (taskCount == 0) { // account for no tasks
+                System.out.println("There are no tasks to display.");
+                return;
+            }
+            System.out.println("List of tasks: "); // print out tasks 1 by 1
+            for (int i = 0; i < taskCount; i++) {
+                System.out.println((i + 1) + ". " + tasks[i].toString());
+            }
+            return;
+        }
+        // add input as a task
+        tasks[taskCount] = new Task(input);
+        taskCount++;
+        System.out.println("Added new Task: " + input);
+        return;
     }
 }
