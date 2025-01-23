@@ -9,9 +9,17 @@ public class Miki {
             "   / /  / // // /| |_/ /   \n" + //
             "  /_/  /_/___/_/ |_/___/   "; //
 
+    private static String intro = "____________________________________________________________\n" + //
+            "Hello from \n"
+            + logo +
+            "\n" +
+            "Your ChatBot assistant. \n"
+            +
+            "\n"
+            + "Please enter a command to start: \n";
+
     public static void main(String[] args) {
-        System.out.println("____________________________________________________________\n" + //
-                "Hello from \n" + logo + "\n" + "Your local ChatBot assistant.");
+        System.out.println(intro);
 
         Scanner sc = new Scanner(System.in);
 
@@ -23,9 +31,10 @@ public class Miki {
                 System.out.println("____________________________________________________________\n");
                 break;
             }
-            System.out.println(input);
+            System.out.println(input + "\n");
 
             System.out.println("____________________________________________________________\n");
         }
+        sc.close();
     }
 }
