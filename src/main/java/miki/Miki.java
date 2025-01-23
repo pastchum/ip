@@ -3,24 +3,29 @@ package miki;
 import java.util.Scanner;
 
 public class Miki {
-    public static void main(String[] args) {
-        String logo = "      __  _________ __ ____\n" + //
-                "     /  |/  /  _/ //_//  _/\n" + //
-                "    / /|_/ // // ,<   / /  \n" + //
-                "   / /  / // // /| |_/ /   \n" + //
-                "  /_/  /_/___/_/ |_/___/   \n" + //
-                "                           \n";
+    private static String logo = "      __  _________ __ ____\n" + //
+            "     /  |/  /  _/ //_//  _/\n" + //
+            "    / /|_/ // // ,<   / /  \n" + //
+            "   / /  / // // /| |_/ /   \n" + //
+            "  /_/  /_/___/_/ |_/___/   "; //
 
+    public static void main(String[] args) {
         System.out.println("____________________________________________________________\n" + //
                 "Hello from \n" + logo + "\n" + "Your local ChatBot assistant.");
 
+        Scanner sc = new Scanner(System.in);
+
         while (true) {
-            System.out.println("____________________________________________________________\n");
-
-            System.out.println("Bye. See you again. \n");
-
+            String input = sc.nextLine();
             System.out.println("____________________________________________________________");
-            break;
+            if (input.toLowerCase().contains("bye")) {
+                System.out.println("Terminating Session. Goodbye.\n");
+                System.out.println("____________________________________________________________\n");
+                break;
+            }
+            System.out.println(input);
+
+            System.out.println("____________________________________________________________\n");
         }
     }
 }
