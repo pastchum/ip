@@ -12,7 +12,7 @@ public class Miki {
                 "                           \n";
 
         System.out.println("____________________________________________________________\n" + //
-                "Hello from \n" + logo);
+                "Hello from \n" + logo + "\n" + "Your local ChatBot assistant.");
 
         while (true) {
             System.out.println("____________________________________________________________\n");
