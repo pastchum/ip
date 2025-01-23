@@ -6,6 +6,7 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
+        this.isCompleted = false;
     }
 
     public void toggleCompletion() {
