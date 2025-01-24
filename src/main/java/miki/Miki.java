@@ -98,7 +98,8 @@ public class Miki {
             }
             return;
         }
-        // add input as a task
+        // add input as a task 
+        // TODO: switch for task logic
         tasks[taskCount] = new Task(line);
         taskCount++;
         System.out.println("Added new Task: " + line);

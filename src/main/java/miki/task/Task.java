@@ -1,6 +1,6 @@
 package miki.task;
 
-public class Task {
+public abstract class Task {
     private String description;
     private boolean isCompleted;
 
@@ -19,6 +19,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + (isCompleted ? "X" : " ") + "] " + description;
+        return "[" + (isCompleted ? "X" : " ") + "]  " + description;
     };
 }
