@@ -7,7 +7,7 @@ Hello from
   /_/  /_/___/_/ |_/___/   
                            
           ฅ^•ﻌ•^ฅ         
-Your ChatBot assistant. 
+Your ChatBot assistant Dawg :). 
 
 Please enter a command to start: 
 
@@ -16,23 +16,24 @@ There are no tasks to display.
 ____________________________________________________________
 
 ____________________________________________________________
-Error Occured.
+Error Occured Dawg.
 The task you requested for does not exist.
 ____________________________________________________________
 
 ____________________________________________________________
-Invalid Input.
-Please follow the following formats to set tasks:
+What are you saying Dawg.
+Use the following formats to set tasks:
 ToDo     : ToDo {TASK DESCRIPTION}
 Deadline : Deadline {TASK DESCRIPTION} /by {DEADLINE}
 Event    : Event {TASK DESCRIPTION} /from {START} /to {END}
 ____________________________________________________________
 
 ____________________________________________________________
-ToDo task has been added.
+ToDo task has been added Dawg.
 [T] [ ]  todo hello
 
 You now have 1 task.
+Get to work Dawg.
 ____________________________________________________________
 
 ____________________________________________________________
@@ -58,22 +59,25 @@ Task 1 has already been completed.
 ____________________________________________________________
 
 ____________________________________________________________
-Event task has been added.
+Event task has been added Dawg.
 [E] [ ]  test event
         From  today  to  tomorrow
 You now have 2 tasks.
+Get to work Dawg.
 ____________________________________________________________
 
 ____________________________________________________________
-Error Occured.
-The event task you wrote has the wrong formatting.
-Please use the following:
+Error Occured Dawg.
+The event task you wrote has no start date.
+Try the following format:
 Event    : Event {TASK DESCRIPTION} /from {START} /to {END}
 ____________________________________________________________
 
 ____________________________________________________________
-Error Occured.
+Error Occured Dawg.
 The event task you wrote has no end timing.
+Try the following format:
+Event    : Event {TASK DESCRIPTION} /from {START} /to {END}
 ____________________________________________________________
 
 ____________________________________________________________
@@ -83,12 +87,12 @@ Task 2 completed.
 ____________________________________________________________
 
 ____________________________________________________________
-Error Occured.
+Error Occured Dawg.
 The task you requested for does not exist.
 ____________________________________________________________
 
 ____________________________________________________________
-Error Occured.
+Error Occured Dawg.
 The task you requested for does not exist.
 ____________________________________________________________
 
@@ -107,15 +111,23 @@ Task 2 is not completed.
 ____________________________________________________________
 
 ____________________________________________________________
-Error Occured.
+Error Occured Dawg.
 The deadline task you wrote does not have a deadline.
 ____________________________________________________________
 
 ____________________________________________________________
-Deadline task has been added.
+Deadline task has been added Dawg.
 [D] [ ]  testdeadline
         Deadline: today
 You now have 3 tasks.
+Get to work Dawg.
+____________________________________________________________
+
+____________________________________________________________
+Error Occured Dawg.
+Your task lacks a description.
+Try the following format:
+Event    : Event {TASK DESCRIPTION} /from {START} /to {END}
 ____________________________________________________________
 
 ____________________________________________________________
@@ -145,7 +157,7 @@ List of tasks:
 ____________________________________________________________
 
 ____________________________________________________________
-Terminating Session. Goodbye.
+End of session Dawg. Goodbye Dawg.
 
 ____________________________________________________________
 
