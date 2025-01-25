@@ -6,6 +6,6 @@ public class ToDoException extends TaskException {
     }
 
     public ToDoException(String message) {
-        super("Error Occured Dawg.\n" + message);
+        super(message);
     }
 }
