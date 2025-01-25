@@ -98,6 +98,10 @@ public class Miki {
             }
             return;
         }
+        if (taskCount == 100) {
+            throw new TooManyTasksException("Too many dawg!\n" + "Go delete some.");
+        }
+
         // add input as a task
         if (inputs[0].toLowerCase().equals("event")) {
             int startIndex = -1, endIndex = -1;
