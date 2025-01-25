@@ -16,6 +16,7 @@ list
 unmark 2
 deadline today
 deadline testdeadline /by today
+deadline /by today
 list
 mark 3
 list
