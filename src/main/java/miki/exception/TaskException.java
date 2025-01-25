@@ -6,6 +6,6 @@ public class TaskException extends MikiException {
     }
 
     public TaskException(String message) {
-        super("Error Occured Dawg.\n" + message);
+        super(message);
     }
 }

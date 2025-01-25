@@ -3,7 +3,7 @@ package miki;
 import miki.task.*;
 import miki.exception.*;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Miki {
     private static String logo = "      __  _________ __ ____\n" + //
@@ -23,7 +23,7 @@ public class Miki {
             "\n"
             + "Please enter a command to start: \n";
 
-    private static Task[] tasks = new Task[100];
+    private static ArrayList<Task> tasks = new ArrayList<>();
     private static int taskCount = 0;
 
     public static void main(String[] args) {
@@ -57,7 +57,7 @@ public class Miki {
         String[] inputs = line.split(" ");
         if (inputs[0].toLowerCase().equals("list")) {
             if (inputs.length != 1) {
-                System.out.println("Error Occured Dawg.\nPlease pass in the correct number of arguments.");
+                System.out.println("Please pass in the correct number of arguments.");
             }
             if (taskCount == 0) { // account for no tasks
                 System.out.println("There are no tasks to display.");
@@ -65,18 +65,18 @@ public class Miki {
             }
             System.out.println("List of tasks: "); // print out tasks 1 by 1
             for (int i = 0; i < taskCount; i++) {
-                System.out.println((i + 1) + ". " + tasks[i].toString());
+                System.out.println((i + 1) + ". " + tasks.get(i).toString());
             }
             return;
         } else if (inputs[0].toLowerCase().contains("mark")) {
             if (inputs.length != 2) {// check that the unmark function is properly called
-                throw new CheckException("Error Occured Dawg.\nPlease pass in the correct number of arguments.");
+                throw new CheckException("Please pass in the correct number of arguments.");
             }
             int taskNumber = Integer.parseInt(inputs[1]);
             if (taskNumber > taskCount) {// check task number is within the range of available tasks
-                throw new CheckException("Error Occured Dawg.\nThe task you requested for does not exist.");
+                throw new CheckException("The task you requested for does not exist.");
             }
-            Task task = tasks[taskNumber - 1];
+            Task task = tasks.get(taskNumber - 1);
             if (inputs[0].toLowerCase().equals("mark")) {
                 if (task.checkCompleted()) {
                     throw new CheckException(
@@ -97,6 +97,24 @@ public class Miki {
                                 + task.toString());
             }
             return;
+        }
+        if (inputs[0].toLowerCase().contains("delete")) {
+            if (inputs.length != 1) {
+                throw new DeleteFailedException("Please pass in the correct number of arguments.");
+            }
+            if (taskCount == 0) {// check task number is within the range of available tasks
+                throw new DeleteFailedException("There are no tasks to delete.");
+            }
+            int taskNumber = Integer.parseInt(inputs[1]);
+            if (taskNumber > taskCount) {// check task number is within the range of available tasks
+                throw new DeleteFailedException("The task you requested for does not exist.");
+            }
+            Task task = tasks.get(taskNumber - 1);
+            tasks.remove(taskNumber - 1);
+            System.out.println(
+                    "Task " + taskNumber + " has been deleted Dawg.\n"
+                            + task.toString());
+
         }
         if (taskCount == 100) {
             throw new TooManyTasksException("Too many dawg!\n" + "Go delete some.");
@@ -145,7 +163,7 @@ public class Miki {
             Task task = new Event(descBuilder.toString().trim(),
                     startBuilder.toString().trim(),
                     endBuilder.toString().trim());
-            tasks[taskCount] = task;
+            tasks.add(task);
             taskCount++;
             System.out.println(
                     "Event task has been added Dawg.\n"
@@ -180,7 +198,7 @@ public class Miki {
                 deadlineBuilder.append(inputs[i]).append(" ");
             }
             Task task = new Deadline(descBuilder.toString().trim(), deadlineBuilder.toString().trim());
-            tasks[taskCount] = task;
+            tasks.add(task);
             taskCount++;
             System.out.println(
                     "Deadline task has been added Dawg.\n"
@@ -191,7 +209,7 @@ public class Miki {
         } else if (inputs[0].toLowerCase().equals("todo")) {
             Task task = new ToDo(line);
 
-            tasks[taskCount] = task;
+            tasks.add(task);
             taskCount++;
             System.out.println(
                     "ToDo task has been added Dawg.\n"

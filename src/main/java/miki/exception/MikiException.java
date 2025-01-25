@@ -6,6 +6,6 @@ public class MikiException extends Exception {
     }
 
     public MikiException(String message) {
-        super(message);
+        super("Error Occured Dawg.\n" + message);
     }
 }
