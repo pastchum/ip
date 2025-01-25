@@ -13,6 +13,6 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E] " + super.toString() + "\n" +
-                "        From " + start + " to " + end;
+                "        From  " + start + "  to  " + end;
     }
 }

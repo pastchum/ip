@@ -116,7 +116,7 @@ public class Miki {
                         "Error Occured.\nThe event task you wrote has no start timing.");
                 return;
             }
-            for (int i = startIndex; i > 1; i++) {
+            for (int i = startIndex; i < inputs.length; i++) {
                 if (inputs[i].equals("/to")) {
                     if (endIndex != -1) {
                         System.out.println(
@@ -186,13 +186,12 @@ public class Miki {
             tasks[taskCount] = task;
             taskCount++;
             return;
-        }
-        else {
-            System.out.println("Invalid Input.\n" 
-                + "Please follow the following formats to set tasks:\n"
-                + "ToDo    : ToDo {TASK DESCRIPTION}\n"
-                + "Deadline: Deadline {TASK DESCRIPTION} /by {DEADLINE}\n"
-                + "Event   : Event {TASK DESCRIPTION} /from {START} /to {END}");
+        } else {
+            System.out.println("Invalid Input.\n"
+                    + "Please follow the following formats to set tasks:\n"
+                    + "ToDo     : ToDo {TASK DESCRIPTION}\n"
+                    + "Deadline : Deadline {TASK DESCRIPTION} /by {DEADLINE}\n"
+                    + "Event    : Event {TASK DESCRIPTION} /from {START} /to {END}");
         }
     }
 }
