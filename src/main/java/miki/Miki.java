@@ -113,7 +113,9 @@ public class Miki {
             }
             if (startIndex == -1) {
                 System.out.println(
-                        "Error Occured.\nThe event task you wrote has no start timing.");
+                        "Error Occured.\nThe event task you wrote has the wrong formatting.\n"
+                                + "Please use the following:\n"
+                                + "Event    : Event {TASK DESCRIPTION} /from {START} /to {END}");
                 return;
             }
             for (int i = startIndex; i < inputs.length; i++) {
@@ -148,6 +150,10 @@ public class Miki {
                     endBuilder.toString().trim());
             tasks[taskCount] = task;
             taskCount++;
+            System.out.println(
+                    "Event task has been added.\n"
+                            + task.toString() + "\n"
+                            + "You now have " + taskCount + " task" + (taskCount > 1 ? "s" : "") + ".");
             return;
 
         } else if (inputs[0].toLowerCase().equals("deadline")) {
@@ -179,12 +185,20 @@ public class Miki {
             Task task = new Deadline(descBuilder.toString().trim(), deadlineBuilder.toString().trim());
             tasks[taskCount] = task;
             taskCount++;
+            System.out.println(
+                    "Deadline task has been added.\n"
+                            + task.toString() + "\n"
+                            + "You now have " + taskCount + " task" + (taskCount > 1 ? "s" : "") + ".");
             return;
         } else if (inputs[0].toLowerCase().equals("todo")) {
             Task task = new ToDo(line);
 
             tasks[taskCount] = task;
             taskCount++;
+            System.out.println(
+                    "ToDo task has been added.\n"
+                            + task.toString() + "\n" 
+                            + "You now have " + taskCount + " task" + (taskCount > 1 ? "s" : "") + ".");
             return;
         } else {
             System.out.println("Invalid Input.\n"
