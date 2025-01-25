@@ -99,7 +99,8 @@ public class Miki {
             return;
         }
         if (inputs[0].toLowerCase().contains("delete")) {
-            if (inputs.length != 1) {
+            if (inputs.length != 2) {
+                System.out.println(inputs.length);
                 throw new DeleteFailedException("Please pass in the correct number of arguments.");
             }
             if (taskCount == 0) {// check task number is within the range of available tasks
@@ -114,6 +115,7 @@ public class Miki {
             System.out.println(
                     "Task " + taskNumber + " has been deleted Dawg.\n"
                             + task.toString());
+            return;
 
         }
         if (taskCount == 100) {
@@ -207,7 +209,11 @@ public class Miki {
                             + "Get to work Dawg.");
             return;
         } else if (inputs[0].toLowerCase().equals("todo")) {
-            Task task = new ToDo(line);
+            StringBuilder descBuilder = new StringBuilder();
+            for (int i = 1; i < inputs.length; i++) {
+                descBuilder.append(inputs[i]).append(" ");
+            }
+            Task task = new ToDo(descBuilder.toString());
 
             tasks.add(task);
             taskCount++;
