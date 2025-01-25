@@ -2,6 +2,7 @@ package miki;
 
 import miki.task.*;
 import miki.exception.*;
+import miki.storage.Storage;
 
 import java.util.*;
 
@@ -25,11 +26,17 @@ public class Miki {
 
     private static TaskList tasks;
 
-    public static void main(String[] args) {
-        System.out.println(intro);
+    public Miki() {
+        try {
+            Storage storage = new Storage("./data/tasks.txt");
+            tasks = new TaskList((storage.load()));
+        } catch (MikiException e) {
+            System.out.println("MikiException :(\n" + e.getMessage());
+        }
+    }
 
+    public void run() {
         Scanner sc = new Scanner(System.in);
-        tasks = new TaskList();
 
         while (true) {
             String input = sc.nextLine();
@@ -48,6 +55,11 @@ public class Miki {
             System.out.println("____________________________________________________________\n");
         }
         sc.close();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(intro);
+        new Miki().run();
     }
 
     public static void handleInput(String line) throws MikiException {

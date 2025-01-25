@@ -4,8 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import miki.Miki;
 import miki.exception.MikiException;
+import miki.parse.Parser;
+import miki.task.*;
 
 public class Storage {
     private String filePath;
@@ -14,8 +15,8 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public List<String> load() throws MikiException {
-        List<String> tasks = new ArrayList<>();
+    public List<Task> load() throws MikiException {
+        List<Task> tasks = new ArrayList<>();
         try {
             File file = new File(filePath);
             if (!file.exists()) {
@@ -25,7 +26,7 @@ public class Storage {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) {
-                tasks.add(line);
+                tasks.add(Parser.parseTaskFromFile(line));
             }
             br.close();
         } catch (IOException e) {
