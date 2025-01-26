@@ -1,33 +1,19 @@
 package miki;
 
 import miki.task.*;
+import miki.ui.*;
 import miki.exception.*;
 import miki.storage.Storage;
 
 import java.util.*;
 
 public class Miki {
-    private static String logo = "      __  _________ __ ____\n" + //
-            "     /  |/  /  _/ //_//  _/\n" + //
-            "    / /|_/ // // ,<   / /  \n" + //
-            "   / /  / // // /| |_/ /   \n" + //
-            "  /_/  /_/___/_/ |_/___/   \n" +
-            "                           \n" +
-            "          ฅ^•ﻌ•^ฅ         "; //
-
-    private static String intro = "____________________________________________________________\n" + //
-            "Hello from \n"
-            + logo +
-            "\n" +
-            "Your ChatBot assistant Dawg :). \n"
-            +
-            "\n"
-            + "Please enter a command to start: \n";
-
     private static TaskList tasks;
     private Storage storage;
+    private Ui ui;
 
     public Miki() {
+        ui = new Ui();
         try {
             storage = new Storage("./data/tasks.txt");
             tasks = new TaskList((storage.load()));
@@ -38,13 +24,13 @@ public class Miki {
 
     public void run() {
         Scanner sc = new Scanner(System.in);
+        ui.showIntro();
 
         while (true) {
             String input = sc.nextLine();
-            System.out.println("____________________________________________________________");
+            ui.showLine();
             if (input.toLowerCase().contains("bye")) {
-                System.out.println("End of session Dawg. Goodbye Dawg.\n");
-                System.out.println("____________________________________________________________\n");
+                ui.showExit();
                 break;
             }
             try {
@@ -59,7 +45,6 @@ public class Miki {
     }
 
     public static void main(String[] args) {
-        System.out.println(intro);
         new Miki().run();
     }
 
