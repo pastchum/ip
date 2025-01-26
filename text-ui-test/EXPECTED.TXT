@@ -12,14 +12,23 @@ Your ChatBot assistant Dawg :).
 Please enter a command to start: 
 
 ____________________________________________________________
-There are no tasks to display.
 ____________________________________________________________
+List of tasks: 
+1. [D] [X]  TestDeadline
+        Deadline: Time
+2. [T] [ ]  TestTodo
+
+3. [E] [X]  TestEvent
+        From  TimeStart  to  TimeEnd
+____________________________________________________________
+____________________________________________________________
+Please pass in the correct number of arguments.
+Format   :   mark {TASKNUMBER}
+____________________________________________________________
+____________________________________________________________
+Task 1 has already been completed.
 
 ____________________________________________________________
-Error Occured Dawg.
-The task you requested for does not exist.
-____________________________________________________________
-
 ____________________________________________________________
 What are you saying Dawg.
 Use the following formats to set tasks:
@@ -27,137 +36,194 @@ ToDo     : ToDo {TASK DESCRIPTION}
 Deadline : Deadline {TASK DESCRIPTION} /by {DEADLINE}
 Event    : Event {TASK DESCRIPTION} /from {START} /to {END}
 ____________________________________________________________
-
 ____________________________________________________________
 ToDo task has been added Dawg.
-[T] [ ]  todo hello
+[T] [ ]  hello
 
-You now have 1 task.
+You now have 4 tasks.
 Get to work Dawg.
 ____________________________________________________________
-
 ____________________________________________________________
 List of tasks: 
-1. [T] [ ]  todo hello
+1. [D] [X]  TestDeadline
+        Deadline: Time
+2. [T] [ ]  TestTodo
+
+3. [E] [X]  TestEvent
+        From  TimeStart  to  TimeEnd
+4. [T] [ ]  hello
 
 ____________________________________________________________
-
 ____________________________________________________________
-Task 1 has yet to be completed.
-
+Task 1 is not completed.
+[D] [ ]  TestDeadline
+        Deadline: Time
 ____________________________________________________________
-
 ____________________________________________________________
 Task 1 completed.
-[T] [X]  todo hello
-
+[D] [X]  TestDeadline
+        Deadline: Time
 ____________________________________________________________
-
 ____________________________________________________________
 Task 1 has already been completed.
 
 ____________________________________________________________
-
 ____________________________________________________________
 Event task has been added Dawg.
 [E] [ ]  test event
         From  today  to  tomorrow
-You now have 2 tasks.
+You now have 5 tasks.
 Get to work Dawg.
 ____________________________________________________________
-
 ____________________________________________________________
-Error Occured Dawg.
 The event task you wrote has no start date.
 Try the following format:
 Event    : Event {TASK DESCRIPTION} /from {START} /to {END}
 ____________________________________________________________
-
 ____________________________________________________________
-Error Occured Dawg.
 The event task you wrote has no end timing.
 Try the following format:
 Event    : Event {TASK DESCRIPTION} /from {START} /to {END}
 ____________________________________________________________
-
 ____________________________________________________________
 Task 2 completed.
-[E] [X]  test event
-        From  today  to  tomorrow
-____________________________________________________________
+[T] [X]  TestTodo
 
 ____________________________________________________________
-Error Occured Dawg.
-The task you requested for does not exist.
 ____________________________________________________________
+Task 3 has already been completed.
 
 ____________________________________________________________
-Error Occured Dawg.
-The task you requested for does not exist.
 ____________________________________________________________
-
+The task you requested to mark does not exist.
+____________________________________________________________
 ____________________________________________________________
 List of tasks: 
-1. [T] [X]  todo hello
+1. [D] [X]  TestDeadline
+        Deadline: Time
+2. [T] [X]  TestTodo
 
-2. [E] [X]  test event
+3. [E] [X]  TestEvent
+        From  TimeStart  to  TimeEnd
+4. [T] [ ]  hello
+
+5. [E] [ ]  test event
         From  today  to  tomorrow
 ____________________________________________________________
-
 ____________________________________________________________
 Task 2 is not completed.
-[E] [ ]  test event
-        From  today  to  tomorrow
-____________________________________________________________
+[T] [ ]  TestTodo
 
 ____________________________________________________________
-Error Occured Dawg.
-The deadline task you wrote does not have a deadline.
 ____________________________________________________________
-
+The deadline task you wrote does not have a deadline.Try the following format:
+Deadline  : Deadline {TASK DESCRIPTION} /by {DEADLINE}
+____________________________________________________________
 ____________________________________________________________
 Deadline task has been added Dawg.
 [D] [ ]  testdeadline
         Deadline: today
-You now have 3 tasks.
+You now have 6 tasks.
 Get to work Dawg.
 ____________________________________________________________
-
 ____________________________________________________________
-Error Occured Dawg.
 Your task lacks a description.
 Try the following format:
-Event    : Event {TASK DESCRIPTION} /from {START} /to {END}
+Deadline  : Deadline {TASK DESCRIPTION} /by {DEADLINE}
 ____________________________________________________________
-
-____________________________________________________________
-List of tasks: 
-1. [T] [X]  todo hello
-
-2. [E] [ ]  test event
-        From  today  to  tomorrow
-3. [D] [ ]  testdeadline
-        Deadline: today
-____________________________________________________________
-
-____________________________________________________________
-Task 3 completed.
-[D] [X]  testdeadline
-        Deadline: today
-____________________________________________________________
-
 ____________________________________________________________
 List of tasks: 
-1. [T] [X]  todo hello
+1. [D] [X]  TestDeadline
+        Deadline: Time
+2. [T] [ ]  TestTodo
 
-2. [E] [ ]  test event
+3. [E] [X]  TestEvent
+        From  TimeStart  to  TimeEnd
+4. [T] [ ]  hello
+
+5. [E] [ ]  test event
         From  today  to  tomorrow
-3. [D] [X]  testdeadline
+6. [D] [ ]  testdeadline
         Deadline: today
 ____________________________________________________________
+____________________________________________________________
+Task 3 has already been completed.
 
+____________________________________________________________
+____________________________________________________________
+List of tasks: 
+1. [D] [X]  TestDeadline
+        Deadline: Time
+2. [T] [ ]  TestTodo
+
+3. [E] [X]  TestEvent
+        From  TimeStart  to  TimeEnd
+4. [T] [ ]  hello
+
+5. [E] [ ]  test event
+        From  today  to  tomorrow
+6. [D] [ ]  testdeadline
+        Deadline: today
+____________________________________________________________
+____________________________________________________________
+1
+Delete Task failed
+Please pass in the correct number of arguments.
+Format   :   delete {TASKNUMBER}
+____________________________________________________________
+____________________________________________________________
+Task 4 has been deleted Dawg.
+[T] [ ]  hello
+
+____________________________________________________________
+____________________________________________________________
+List of tasks: 
+1. [D] [X]  TestDeadline
+        Deadline: Time
+2. [T] [ ]  TestTodo
+
+3. [E] [X]  TestEvent
+        From  TimeStart  to  TimeEnd
+4. [E] [ ]  test event
+        From  today  to  tomorrow
+5. [D] [ ]  testdeadline
+        Deadline: today
+____________________________________________________________
+____________________________________________________________
+Task 5 has been deleted Dawg.
+[D] [ ]  testdeadline
+        Deadline: today
+____________________________________________________________
+____________________________________________________________
+List of tasks: 
+1. [D] [X]  TestDeadline
+        Deadline: Time
+2. [T] [ ]  TestTodo
+
+3. [E] [X]  TestEvent
+        From  TimeStart  to  TimeEnd
+4. [E] [ ]  test event
+        From  today  to  tomorrow
+____________________________________________________________
+____________________________________________________________
+Delete Task failed
+The task you requested to delete does not exist.
+____________________________________________________________
+____________________________________________________________
+Task 4 has been deleted Dawg.
+[E] [ ]  test event
+        From  today  to  tomorrow
+____________________________________________________________
+____________________________________________________________
+List of tasks: 
+1. [D] [X]  TestDeadline
+        Deadline: Time
+2. [T] [ ]  TestTodo
+
+3. [E] [X]  TestEvent
+        From  TimeStart  to  TimeEnd
+____________________________________________________________
 ____________________________________________________________
 End of session Dawg. Goodbye Dawg.
 
 ____________________________________________________________
-

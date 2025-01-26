@@ -6,6 +6,8 @@ public class ToDoException extends TaskException {
     }
 
     public ToDoException(String message) {
-        super(message);
+        super(message
+                + "Try the following format:\n"
+                + "Todo     : Todo {TASK DESCRIPTION}");
     }
 }

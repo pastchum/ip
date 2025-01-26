@@ -1,230 +1,53 @@
 package miki;
 
 import miki.task.*;
+import miki.ui.*;
+import miki.command.Command;
 import miki.exception.*;
-
-import java.util.*;
+import miki.parse.Parser;
+import miki.storage.Storage;
 
 public class Miki {
-    private static String logo = "      __  _________ __ ____\n" + //
-            "     /  |/  /  _/ //_//  _/\n" + //
-            "    / /|_/ // // ,<   / /  \n" + //
-            "   / /  / // // /| |_/ /   \n" + //
-            "  /_/  /_/___/_/ |_/___/   \n" +
-            "                           \n" +
-            "          ฅ^•ﻌ•^ฅ         "; //
+    private static TaskList tasks;
+    private Storage storage;
+    private Ui ui;
 
-    private static String intro = "____________________________________________________________\n" + //
-            "Hello from \n"
-            + logo +
-            "\n" +
-            "Your ChatBot assistant Dawg :). \n"
-            +
-            "\n"
-            + "Please enter a command to start: \n";
+    public Miki() {
+        ui = new Ui();
+        try {
+            storage = new Storage("./data/tasks.txt");
+            tasks = new TaskList((storage.load()));
+        } catch (MikiException e) {
+            ui.showErrorMessage(e.getMessage());
+            tasks = new TaskList();
+            storage = new Storage("./data/tasks.txt");
+        }
+    }
 
-    private static ArrayList<Task> tasks = new ArrayList<>();
-    private static int taskCount = 0;
-
-    public static void main(String[] args) {
-        System.out.println(intro);
-
-        Scanner sc = new Scanner(System.in);
+    public void run() {
+        ui.showIntro();
 
         while (true) {
-            String input = sc.nextLine();
-            System.out.println("____________________________________________________________");
-            if (input.toLowerCase().contains("bye")) {
-                System.out.println("End of session Dawg. Goodbye Dawg.\n");
-                System.out.println("____________________________________________________________\n");
+            ui.showLine();
+            String userCommand = ui.readCommand();
+            if (userCommand.toLowerCase().contains("bye")) {
+                ui.showExit();
                 break;
             }
             try {
-                handleInput(input);
+                Command command = Parser.handleUserCommand(userCommand);
+                command.execute(tasks, ui, storage);
+                if (command.checkExit())
+                    break;
             } catch (MikiException e) {
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("____________________________________________________________\n");
+            ui.showLine();
         }
-        sc.close();
     }
 
-    public static void handleInput(String line) throws MikiException {
-        if (line.length() == 0) {
-            throw new NoCommandException("No command received Dawg. Try that again.");
-        }
-        String[] inputs = line.split(" ");
-        if (inputs[0].toLowerCase().equals("list")) {
-            if (inputs.length != 1) {
-                System.out.println("Please pass in the correct number of arguments.");
-            }
-            if (taskCount == 0) { // account for no tasks
-                System.out.println("There are no tasks to display.");
-                return;
-            }
-            System.out.println("List of tasks: "); // print out tasks 1 by 1
-            for (int i = 0; i < taskCount; i++) {
-                System.out.println((i + 1) + ". " + tasks.get(i).toString());
-            }
-            return;
-        } else if (inputs[0].toLowerCase().contains("mark")) {
-            if (inputs.length != 2) {// check that the unmark function is properly called
-                throw new CheckException("Please pass in the correct number of arguments.");
-            }
-            int taskNumber = Integer.parseInt(inputs[1]);
-            if (taskNumber > taskCount) {// check task number is within the range of available tasks
-                throw new CheckException("The task you requested for does not exist.");
-            }
-            Task task = tasks.get(taskNumber - 1);
-            if (inputs[0].toLowerCase().equals("mark")) {
-                if (task.checkCompleted()) {
-                    throw new CheckException(
-                            "Task " + taskNumber + " has already been completed.\n");
-                }
-                task.toggleCompletion();
-                System.out.println(
-                        "Task " + taskNumber + " completed.\n"
-                                + task.toString());
-            } else {
-                if (!task.checkCompleted()) {
-                    throw new CheckException(
-                            "Task " + taskNumber + " has yet to be completed.\n");
-                }
-                task.toggleCompletion();
-                System.out.println(
-                        "Task " + taskNumber + " is not completed.\n"
-                                + task.toString());
-            }
-            return;
-        }
-        if (inputs[0].toLowerCase().contains("delete")) {
-            if (inputs.length != 2) {
-                System.out.println(inputs.length);
-                throw new DeleteFailedException("Please pass in the correct number of arguments.");
-            }
-            if (taskCount == 0) {// check task number is within the range of available tasks
-                throw new DeleteFailedException("There are no tasks to delete.");
-            }
-            int taskNumber = Integer.parseInt(inputs[1]);
-            if (taskNumber > taskCount) {// check task number is within the range of available tasks
-                throw new DeleteFailedException("The task you requested for does not exist.");
-            }
-            Task task = tasks.get(taskNumber - 1);
-            tasks.remove(taskNumber - 1);
-            System.out.println(
-                    "Task " + taskNumber + " has been deleted Dawg.\n"
-                            + task.toString());
-            return;
-
-        }
-        if (taskCount == 100) {
-            throw new TooManyTasksException("Too many dawg!\n" + "Go delete some.");
-        }
-
-        // add input as a task
-        if (inputs[0].toLowerCase().equals("event")) {
-            int startIndex = -1, endIndex = -1;
-            for (int i = inputs.length - 1; i > 0; i--) {
-                if (inputs[i].equals("/from")) {
-                    if (startIndex != -1) {
-                        throw new EventException("The event task you wrote has too many start timings.\n");
-                    }
-                    startIndex = i;
-                }
-            }
-            if (startIndex == -1) {
-                throw new EventException("The event task you wrote has no start date.\n");
-            }
-            for (int i = startIndex; i < inputs.length; i++) {
-                if (inputs[i].equals("/to")) {
-                    if (endIndex != -1) {
-                        throw new EventException("The event task you wrote has too many end timings.\n");
-                    }
-                    endIndex = i;
-                }
-            }
-            if (endIndex == -1) {
-                throw new EventException("The event task you wrote has no end timing.\n");
-            }
-            if (startIndex == 1) {
-                throw new EventException("Your task lacks a description.\n");
-            }
-            StringBuilder descBuilder = new StringBuilder();
-            for (int i = 1; i < startIndex; i++) {
-                descBuilder.append(inputs[i]).append(" ");
-            }
-            StringBuilder startBuilder = new StringBuilder();
-            for (int i = startIndex + 1; i < endIndex; i++) {
-                startBuilder.append(inputs[i]).append(" ");
-            }
-            StringBuilder endBuilder = new StringBuilder();
-            for (int i = endIndex + 1; i < inputs.length; i++) {
-                endBuilder.append(inputs[i]).append(" ");
-            }
-            Task task = new Event(descBuilder.toString().trim(),
-                    startBuilder.toString().trim(),
-                    endBuilder.toString().trim());
-            tasks.add(task);
-            taskCount++;
-            System.out.println(
-                    "Event task has been added Dawg.\n"
-                            + task.toString() + "\n"
-                            + "You now have " + taskCount + " task" + (taskCount > 1 ? "s" : "") + ".\n"
-                            + "Get to work Dawg.");
-            return;
-
-        } else if (inputs[0].toLowerCase().equals("deadline")) {
-            int byIndex = -1;
-            for (int i = inputs.length - 2; i > 0; i--) {
-                if (inputs[i].equals("/by")) {
-                    if (byIndex != -1) {
-                        throw new DeadlineException("The deadline task you wrote has too many deadlines.");
-                    }
-                    byIndex = i;
-                }
-            }
-            if (byIndex == -1) {
-                throw new DeadlineException("The deadline task you wrote does not have a deadline.");
-            }
-            if (byIndex == 1) {
-                throw new DeadlineException("Your task lacks a description.\n");
-            }
-
-            StringBuilder descBuilder = new StringBuilder();
-            for (int i = 1; i < byIndex; i++) {
-                descBuilder.append(inputs[i]).append(" ");
-            }
-            StringBuilder deadlineBuilder = new StringBuilder();
-            for (int i = byIndex + 1; i < inputs.length; i++) {
-                deadlineBuilder.append(inputs[i]).append(" ");
-            }
-            Task task = new Deadline(descBuilder.toString().trim(), deadlineBuilder.toString().trim());
-            tasks.add(task);
-            taskCount++;
-            System.out.println(
-                    "Deadline task has been added Dawg.\n"
-                            + task.toString() + "\n"
-                            + "You now have " + taskCount + " task" + (taskCount > 1 ? "s" : "") + ".\n"
-                            + "Get to work Dawg.");
-            return;
-        } else if (inputs[0].toLowerCase().equals("todo")) {
-            StringBuilder descBuilder = new StringBuilder();
-            for (int i = 1; i < inputs.length; i++) {
-                descBuilder.append(inputs[i]).append(" ");
-            }
-            Task task = new ToDo(descBuilder.toString());
-
-            tasks.add(task);
-            taskCount++;
-            System.out.println(
-                    "ToDo task has been added Dawg.\n"
-                            + task.toString() + "\n"
-                            + "You now have " + taskCount + " task" + (taskCount > 1 ? "s" : "") + ".\n"
-                            + "Get to work Dawg.");
-            return;
-        } else {
-            throw new InvalidTaskException("What are you saying Dawg.\n");
-        }
+    public static void main(String[] args) {
+        new Miki().run();
     }
 }
