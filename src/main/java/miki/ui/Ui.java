@@ -3,6 +3,7 @@ package miki.ui;
 import java.util.Scanner;
 
 import miki.task.Task;
+import miki.task.TaskList;
 
 public class Ui {
     private Scanner sc;
@@ -47,6 +48,32 @@ public class Ui {
 
     public void showErrorMessage(String errorMessage) {
         System.out.println("Error Occured Dawg.\n" + errorMessage);
+    }
+
+    public void showTaskAdded(Task task, int taskSize) {
+        System.out.println(
+                task.getTaskType().toString()
+                        + " task has been added Dawg.\n"
+                        + task.toString() + "\n"
+                        + "You now have " + taskSize + " task" + (taskSize > 1 ? "s" : "") + ".\n"
+                        + "Get to work Dawg.");
+    }
+
+    public void showTaskDeleted(Task task, int taskNumber) {
+        System.out.println(
+                "Task " + taskNumber + " has been deleted Dawg.\n"
+                        + task.toString());
+    }
+
+    public void showList(TaskList tasks) {
+        if (tasks.size() == 0) { // account for no tasks
+            System.out.println("There are no tasks to display.");
+            return;
+        }
+        System.out.println("List of tasks: "); // print out tasks 1 by 1
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println((i + 1) + ". " + tasks.getTask(i).toString());
+        }
     }
 
     public void showTaskCompletion(Task task, int taskNumber) {

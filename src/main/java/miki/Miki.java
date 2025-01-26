@@ -207,7 +207,7 @@ public class Miki {
             for (int i = 1; i < inputs.length; i++) {
                 descBuilder.append(inputs[i]).append(" ");
             }
-            Task task = new ToDo(descBuilder.toString());
+            Task task = new ToDo(descBuilder.toString().trim());
 
             tasks.addTask(task);
             System.out.println(

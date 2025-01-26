@@ -5,10 +5,12 @@ import miki.exception.MikiException;
 public abstract class Task {
     private String description;
     private boolean isCompleted;
+    private TaskType taskType;
 
-    public Task(String description) {
+    public Task(String description, TaskType taskType) {
         this.description = description;
         this.isCompleted = false;
+        this.taskType = taskType;
     }
 
     // factory method for parsing from file
@@ -43,6 +45,10 @@ public abstract class Task {
 
     public String toStorageFormat() {
         return isCompleted ? "1" : "0" + " | " + description;
+    }
+
+    public TaskType getTaskType() {
+        return this.taskType;
     }
 
     @Override
