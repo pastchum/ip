@@ -22,7 +22,7 @@ public class Parser {
         if (tokens[0].toLowerCase().equals("mark")) {
             if (tokens.length != 2) {// check that the unmark function is properly called
                 throw new CheckException("Please pass in the correct number of arguments.\n"
-                        + "mark {TASKNUMBER}");
+                        + "Format   :   mark {TASKNUMBER}");
             }
             int taskNumber = Integer.parseInt(tokens[1]);
             return new MarkCommand(taskNumber);
@@ -32,7 +32,7 @@ public class Parser {
         if (tokens[0].toLowerCase().equals("unmark")) {
             if (tokens.length != 2) {// check that the unmark function is properly called
                 throw new CheckException("Please pass in the correct number of arguments for the Unmark command\n"
-                        + "unmark {TASKNUMBER}");
+                        + "Format   :   unmark {TASKNUMBER}");
             }
             int taskNumber = Integer.parseInt(tokens[1]);
             return new UnmarkCommand(taskNumber);
@@ -42,8 +42,8 @@ public class Parser {
         if (tokens[0].toLowerCase().contains("delete")) {
             if (tokens.length != 2) {
                 System.out.println(tokens.length);
-                throw new DeleteFailedException("Please pass in the correct number of arguments."
-                        + "delete {TASKNUMBER}");
+                throw new DeleteFailedException("Please pass in the correct number of arguments.\n"
+                        + "Format   :   delete {TASKNUMBER}");
             }
             int taskNumber = Integer.parseInt(tokens[1]);
             return new DeleteCommand(taskNumber);
