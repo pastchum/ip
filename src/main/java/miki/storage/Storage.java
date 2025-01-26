@@ -30,7 +30,7 @@ public class Storage {
             }
             br.close();
         } catch (IOException e) {
-            throw new MikiException("Error loading tasks from file.");
+            throw new MikiException("Error loading tasks from file.\n" + e.getMessage());
         }
         return tasks;
     }

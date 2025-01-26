@@ -18,7 +18,9 @@ public class Miki {
             storage = new Storage("./data/tasks.txt");
             tasks = new TaskList((storage.load()));
         } catch (MikiException e) {
-            System.out.println("MikiException :(\n" + e.getMessage());
+            ui.showErrorMessage(e.getMessage());
+            tasks = new TaskList();
+            storage = new Storage("./data/tasks.txt");
         }
     }
 
@@ -39,7 +41,7 @@ public class Miki {
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("____________________________________________________________\n");
+            ui.showLine();
         }
         sc.close();
     }
@@ -81,18 +83,14 @@ public class Miki {
                             "Task " + taskNumber + " has already been completed.\n");
                 }
                 task.toggleCompletion();
-                System.out.println(
-                        "Task " + taskNumber + " completed.\n"
-                                + task.toString());
+                ui.showTaskCompletion(task, taskNumber);
             } else {
                 if (!task.checkCompleted()) {
                     throw new CheckException(
                             "Task " + taskNumber + " has yet to be completed.\n");
                 }
                 task.toggleCompletion();
-                System.out.println(
-                        "Task " + taskNumber + " is not completed.\n"
-                                + task.toString());
+                ui.showTaskCompletion(task, taskNumber);
             }
             storage.save(tasks.getTaskList());
             return;

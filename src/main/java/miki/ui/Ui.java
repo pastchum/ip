@@ -1,5 +1,7 @@
 package miki.ui;
 
+import miki.task.Task;
+
 public class Ui {
     public Ui() {
     }
@@ -32,6 +34,17 @@ public class Ui {
         showLine();
         System.out.println(intro);
         showLine();
+    }
+
+    public void showErrorMessage(String errorMessage) {
+        System.out.println("Error Occured Dawg.\n" + errorMessage);
+    }
+
+    public void showTaskCompletion(Task task, int taskNumber) {
+        boolean isCompleted = task.checkCompleted();
+        System.out.println(
+                "Task " + taskNumber + (isCompleted ? " completed.\n" : " is not completed.\n")
+                        + task.toString());
     }
 
     public void showExit() {
