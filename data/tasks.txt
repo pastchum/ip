@@ -1,5 +1,4 @@
+E | 0 | test | today | tomorrow
 T | 0 | test 
-D | 0 | test2 | today
-T | 0 | test 
-E | 0 | testing | today | 3pm
+D | 0 | test | tmr
 T | 0 | test 

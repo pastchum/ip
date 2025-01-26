@@ -5,8 +5,6 @@ import miki.ui.*;
 import miki.exception.*;
 import miki.storage.Storage;
 
-import java.util.*;
-
 public class Miki {
     private static TaskList tasks;
     private Storage storage;
@@ -25,12 +23,11 @@ public class Miki {
     }
 
     public void run() {
-        Scanner sc = new Scanner(System.in);
         ui.showIntro();
 
         while (true) {
-            String input = sc.nextLine();
             ui.showLine();
+            String input = ui.readCommand();
             if (input.toLowerCase().contains("bye")) {
                 ui.showExit();
                 break;
@@ -43,7 +40,6 @@ public class Miki {
 
             ui.showLine();
         }
-        sc.close();
     }
 
     public static void main(String[] args) {

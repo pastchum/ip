@@ -14,9 +14,7 @@ public abstract class Task {
     // factory method for parsing from file
     public static Task parseTaskFromFile(String line) throws MikiException {
         String[] tokens = line.split(" \\| ");
-        for (String token : tokens) {
-            System.out.println(token);
-        }
+
         try {
             Task task = null;
             if (tokens[0].equals("D")) {

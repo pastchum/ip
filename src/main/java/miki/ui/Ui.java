@@ -1,9 +1,14 @@
 package miki.ui;
 
+import java.util.Scanner;
+
 import miki.task.Task;
 
 public class Ui {
+    private Scanner sc;
+
     public Ui() {
+        sc = new Scanner(System.in);
     }
 
     public void showLoadingError() {
@@ -36,6 +41,10 @@ public class Ui {
         showLine();
     }
 
+    public String readCommand() {
+        return sc.nextLine();
+    }
+
     public void showErrorMessage(String errorMessage) {
         System.out.println("Error Occured Dawg.\n" + errorMessage);
     }
@@ -50,5 +59,6 @@ public class Ui {
     public void showExit() {
         System.out.println("End of session Dawg. Goodbye Dawg.\n");
         showLine();
+        sc.close();
     }
 }
