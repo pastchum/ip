@@ -7,10 +7,10 @@ import miki.task.TaskList;
 import miki.task.ToDo;
 import miki.ui.Ui;
 
-public class AddTodoCommand extends Command {
+public class AddToDoCommand extends Command {
     private String description;
 
-    public AddTodoCommand(String description) {
+    public AddToDoCommand(String description) {
         super(false);
         this.description = description;
     }
