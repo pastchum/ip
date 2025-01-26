@@ -25,10 +25,11 @@ public class Miki {
             + "Please enter a command to start: \n";
 
     private static TaskList tasks;
+    private Storage storage;
 
     public Miki() {
         try {
-            Storage storage = new Storage("./data/tasks.txt");
+            storage = new Storage("./data/tasks.txt");
             tasks = new TaskList((storage.load()));
         } catch (MikiException e) {
             System.out.println("MikiException :(\n" + e.getMessage());
@@ -62,7 +63,7 @@ public class Miki {
         new Miki().run();
     }
 
-    public static void handleInput(String line) throws MikiException {
+    public void handleInput(String line) throws MikiException {
         if (line.length() == 0) {
             throw new NoCommandException("No command received Dawg. Try that again.");
         }
@@ -108,6 +109,7 @@ public class Miki {
                         "Task " + taskNumber + " is not completed.\n"
                                 + task.toString());
             }
+            storage.save(tasks.getTaskList());
             return;
         }
         if (inputs[0].toLowerCase().contains("delete")) {
@@ -127,6 +129,7 @@ public class Miki {
             System.out.println(
                     "Task " + taskNumber + " has been deleted Dawg.\n"
                             + task.toString());
+            storage.save(tasks.getTaskList());
             return;
 
         }
@@ -183,6 +186,7 @@ public class Miki {
                             + task.toString() + "\n"
                             + "You now have " + tasks.size() + " task" + (tasks.size() > 1 ? "s" : "") + ".\n"
                             + "Get to work Dawg.");
+            storage.save(tasks.getTaskList());
             return;
 
         } else if (inputs[0].toLowerCase().equals("deadline")) {
@@ -217,6 +221,7 @@ public class Miki {
                             + task.toString() + "\n"
                             + "You now have " + tasks.size() + " task" + (tasks.size() > 1 ? "s" : "") + ".\n"
                             + "Get to work Dawg.");
+            storage.save(tasks.getTaskList());
             return;
         } else if (inputs[0].toLowerCase().equals("todo")) {
             StringBuilder descBuilder = new StringBuilder();
@@ -231,9 +236,11 @@ public class Miki {
                             + task.toString() + "\n"
                             + "You now have " + tasks.size() + " task" + (tasks.size() > 1 ? "s" : "") + ".\n"
                             + "Get to work Dawg.");
+            storage.save(tasks.getTaskList());
             return;
         } else {
             throw new InvalidTaskException("What are you saying Dawg.\n");
         }
+
     }
 }
