@@ -9,6 +9,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String toStorageFormat() {
+        return "D | " + super.toStorageFormat()
+                + " | " + deadline;
+    }
+
+    @Override
     public String toString() {
         return "[D] " + super.toString() + "\n" +
                 "        Deadline: " + deadline;

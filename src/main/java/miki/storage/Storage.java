@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import miki.exception.MikiException;
-import miki.parse.Parser;
 import miki.task.*;
 
 public class Storage {
@@ -20,13 +19,14 @@ public class Storage {
         try {
             File file = new File(filePath);
             if (!file.exists()) {
+                file.createNewFile();
                 return tasks;
             }
 
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) {
-                tasks.add(Parser.parseTaskFromFile(line));
+                tasks.add(Task.parseTaskFromFile(line));
             }
             br.close();
         } catch (IOException e) {
@@ -35,11 +35,11 @@ public class Storage {
         return tasks;
     }
 
-    public void save(List<String> tasks) throws MikiException {
+    public void save(List<Task> tasks) throws MikiException {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-            for (String task : tasks) {
-                writer.write(task);
+            for (Task task : tasks) {
+                writer.write(task.toStorageFormat());
                 writer.newLine();
             }
             writer.close();
