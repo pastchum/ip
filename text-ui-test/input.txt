@@ -21,8 +21,11 @@ list
 mark 3
 list
 delete
-delete 1
+delete 4
 list
-delete 2
+delete 5
+list
+delete 5
+delete 4
 list
 bye

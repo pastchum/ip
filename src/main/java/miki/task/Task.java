@@ -44,7 +44,7 @@ public abstract class Task {
     }
 
     public String toStorageFormat() {
-        return isCompleted ? "1" : "0" + " | " + description;
+        return (isCompleted ? "1" : "0") + " | " + description;
     }
 
     public TaskType getTaskType() {
