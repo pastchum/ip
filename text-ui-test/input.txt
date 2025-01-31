@@ -7,7 +7,7 @@ list
 unmark 1
 mark 1
 mark 1
-event test event /from today /to tomorrow
+event test event /from 2025-01-31 /to 2025-02-28
 event test
 event test /from today yayayayay yay yay yay
 mark 2
@@ -16,7 +16,7 @@ mark 20
 list
 unmark 2
 deadline today
-deadline testdeadline /by today
+deadline testdeadline /by 2025-10-20
 deadline /by today
 list
 mark 3

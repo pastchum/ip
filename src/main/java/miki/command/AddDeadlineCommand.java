@@ -1,5 +1,7 @@
 package miki.command;
 
+import java.time.LocalDate;
+
 import miki.exception.MikiException;
 
 import miki.storage.Storage;
@@ -12,9 +14,9 @@ import miki.ui.Ui;
 
 public class AddDeadlineCommand extends Command {
     private String description;
-    private String deadline;
+    private LocalDate deadline;
 
-    public AddDeadlineCommand(String description, String deadline) {
+    public AddDeadlineCommand(String description, LocalDate deadline) {
         super(false);
         this.description = description;
         this.deadline = deadline;
