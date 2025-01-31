@@ -19,6 +19,9 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D] " + super.toString() + "\n" +
-                "        Deadline: " + deadline;
+                "        Deadline: "
+                + deadline.getDayOfMonth() + " "
+                + deadline.getMonth() + " "
+                + deadline.getYear();
     }
 }

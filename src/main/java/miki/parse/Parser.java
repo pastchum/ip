@@ -95,6 +95,9 @@ public class Parser {
             LocalDate endDate = null;
             try {
                 endDate = LocalDate.parse(tokens[endIndex + 1]);
+                if (endDate.isAfter(startDate)) {
+                    throw new EventException("The end date is before the start date.");
+                }
             } catch (Exception e) {
                 throw new EventException("The end date format is invalid.");
             }
