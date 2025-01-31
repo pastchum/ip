@@ -1,10 +1,12 @@
 package miki.task;
 
-public class Event extends Task {
-    private String start;
-    private String end;
+import java.time.LocalDate;
 
-    public Event(String description, String start, String end) {
+public class Event extends Task {
+    private LocalDate start;
+    private LocalDate end;
+
+    public Event(String description, LocalDate start, LocalDate end) {
         super(description, TaskType.EVENT);
         this.start = start;
         this.end = end;
@@ -19,6 +21,13 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E] " + super.toString() + "\n" +
-                "        From  " + start + "  to  " + end;
+                "        From  "
+                + start.getDayOfMonth() + " "
+                + start.getMonth() + " "
+                + start.getYear()
+                + "  to  "
+                + end.getDayOfMonth() + " "
+                + end.getMonth() + " "
+                + end.getYear();
     }
 }

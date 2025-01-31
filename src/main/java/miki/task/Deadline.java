@@ -1,9 +1,11 @@
 package miki.task;
 
-public class Deadline extends Task {
-    private String deadline;
+import java.time.LocalDate;
 
-    public Deadline(String description, String deadline) {
+public class Deadline extends Task {
+    private LocalDate deadline;
+
+    public Deadline(String description, LocalDate deadline) {
         super(description, TaskType.DEADLINE);
         this.deadline = deadline;
     }
@@ -17,6 +19,9 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D] " + super.toString() + "\n" +
-                "        Deadline: " + deadline;
+                "        Deadline: "
+                + deadline.getDayOfMonth() + " "
+                + deadline.getMonth() + " "
+                + deadline.getYear();
     }
 }

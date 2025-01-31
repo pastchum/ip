@@ -1,5 +1,7 @@
 package miki.parse;
 
+import java.time.LocalDate;
+
 import miki.command.*;
 import miki.exception.*;
 
@@ -77,21 +79,32 @@ public class Parser {
             if (startIndex == 1) {
                 throw new EventException("Your task lacks a description.\n");
             }
+            // parse description
             StringBuilder descBuilder = new StringBuilder();
             for (int i = 1; i < startIndex; i++) {
                 descBuilder.append(tokens[i]).append(" ");
             }
-            StringBuilder startBuilder = new StringBuilder();
-            for (int i = startIndex + 1; i < endIndex; i++) {
-                startBuilder.append(tokens[i]).append(" ");
+            // parse start date
+            LocalDate startDate = null;
+            try {
+                startDate = LocalDate.parse(tokens[startIndex + 1]);
+            } catch (Exception e) {
+                throw new EventException("The start date format is invalid.");
             }
-            StringBuilder endBuilder = new StringBuilder();
-            for (int i = endIndex + 1; i < tokens.length; i++) {
-                endBuilder.append(tokens[i]).append(" ");
+            // parse end date
+            LocalDate endDate = null;
+            try {
+                endDate = LocalDate.parse(tokens[endIndex + 1]);
+                if (endDate.isAfter(startDate)) {
+                    throw new EventException("The end date is before the start date.");
+                }
+            } catch (Exception e) {
+                throw new EventException("The end date format is invalid.");
             }
+
             return new AddEventCommand(descBuilder.toString().trim(),
-                    startBuilder.toString().trim(),
-                    endBuilder.toString().trim());
+                    startDate,
+                    endDate);
 
         } else if (tokens[0].toLowerCase().equals("deadline")) {
             int byIndex = -1;
@@ -109,22 +122,26 @@ public class Parser {
             if (byIndex == 1) {
                 throw new DeadlineException("Your task lacks a description.\n");
             }
-
+            // parse description
             StringBuilder descBuilder = new StringBuilder();
             for (int i = 1; i < byIndex; i++) {
                 descBuilder.append(tokens[i]).append(" ");
             }
-            StringBuilder deadlineBuilder = new StringBuilder();
-            for (int i = byIndex + 1; i < tokens.length; i++) {
-                deadlineBuilder.append(tokens[i]).append(" ");
+            // parse deadline date
+            LocalDate deadlineDate = null;
+            try {
+                deadlineDate = LocalDate.parse(tokens[byIndex + 1]);
+            } catch (Exception e) {
+                throw new DeadlineException("The deadline date format is invalid.");
             }
             return new AddDeadlineCommand(descBuilder.toString().trim(),
-                    deadlineBuilder.toString().trim());
+                    deadlineDate);
 
         } else if (tokens[0].toLowerCase().equals("todo")) {
             if (tokens.length == 1) {
                 throw new ToDoException("Your task lacks a description.\n");
             }
+            // parse description
             StringBuilder descBuilder = new StringBuilder();
             for (int i = 1; i < tokens.length; i++) {
                 descBuilder.append(tokens[i]).append(" ");

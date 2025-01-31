@@ -9,7 +9,7 @@ public class InvalidTaskException extends TaskException {
         super(message
                 + "Use the following formats to set tasks:\n"
                 + "ToDo     : ToDo {TASK DESCRIPTION}\n"
-                + "Deadline : Deadline {TASK DESCRIPTION} /by {DEADLINE}\n"
-                + "Event    : Event {TASK DESCRIPTION} /from {START} /to {END}");
+                + "Deadline : Deadline {TASK DESCRIPTION} /by YYYY-MM-DD\n"
+                + "Event    : Event {TASK DESCRIPTION} /from YYYY-MM-DD /to YYYY-MM-DD\n");
     }
 }

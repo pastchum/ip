@@ -1,9 +1,14 @@
 package miki.command;
 
-import miki.exception.*;
-import miki.task.*;
-import miki.ui.*;
-import miki.storage.*;
+import miki.exception.MikiException;
+import miki.exception.DeleteFailedException;
+
+import miki.storage.Storage;
+
+import miki.task.TaskList;
+import miki.task.Task;
+
+import miki.ui.Ui;
 
 public class DeleteCommand extends Command {
     private int taskNumber;

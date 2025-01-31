@@ -1,3 +1,0 @@
-D | 1 | TestDeadline | Time
-T | 0 | TestTodo
-E | 1 | TestEvent | TimeStart | TimeEnd

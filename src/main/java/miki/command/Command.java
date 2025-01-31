@@ -1,9 +1,12 @@
 package miki.command;
 
-import miki.task.*;
-import miki.ui.*;
-import miki.exception.*;
-import miki.storage.*;
+import miki.exception.MikiException;
+
+import miki.storage.Storage;
+
+import miki.task.TaskList;
+
+import miki.ui.Ui;
 
 public abstract class Command {
     private boolean isExit;
