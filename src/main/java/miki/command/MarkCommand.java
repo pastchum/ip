@@ -1,10 +1,13 @@
 package miki.command;
 
-import miki.exception.CheckException;
 import miki.exception.MikiException;
+import miki.exception.CheckException;
+
 import miki.storage.Storage;
-import miki.task.Task;
+
 import miki.task.TaskList;
+import miki.task.Task;
+
 import miki.ui.Ui;
 
 public class MarkCommand extends Command {
