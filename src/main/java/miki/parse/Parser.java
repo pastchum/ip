@@ -1,6 +1,6 @@
 package miki.parse;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import miki.command.*;
 import miki.exception.*;
@@ -85,16 +85,16 @@ public class Parser {
                 descBuilder.append(tokens[i]).append(" ");
             }
             // parse start date
-            LocalDate startDate = null;
+            LocalDateTime startDate = null;
             try {
-                startDate = LocalDate.parse(tokens[startIndex + 1]);
+                startDate = LocalDateTime.parse(tokens[startIndex + 1]);
             } catch (Exception e) {
                 throw new EventException("The start date format is invalid.");
             }
             // parse end date
-            LocalDate endDate = null;
+            LocalDateTime endDate = null;
             try {
-                endDate = LocalDate.parse(tokens[endIndex + 1]);
+                endDate = LocalDateTime.parse(tokens[endIndex + 1]);
                 if (endDate.isAfter(startDate)) {
                     throw new EventException("The end date is before the start date.");
                 }
@@ -128,9 +128,9 @@ public class Parser {
                 descBuilder.append(tokens[i]).append(" ");
             }
             // parse deadline date
-            LocalDate deadlineDate = null;
+            LocalDateTime deadlineDate = null;
             try {
-                deadlineDate = LocalDate.parse(tokens[byIndex + 1]);
+                deadlineDate = LocalDateTime.parse(tokens[byIndex + 1]);
             } catch (Exception e) {
                 throw new DeadlineException("The deadline date format is invalid.");
             }
