@@ -3,6 +3,7 @@ package miki.parse;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import miki.Miki;
 import miki.command.*;
 import miki.exception.*;
 
@@ -50,6 +51,16 @@ public class Parser {
             }
             int taskNumber = Integer.parseInt(tokens[1]);
             return new DeleteCommand(taskNumber);
+        }
+
+        // find
+        if (tokens[0].toLowerCase().contains("find")) {
+            if (tokens.length == 1) {
+                throw new MikiException("Please pass in the correct number of arguments.\n"
+                        + "Format   :   find {KEYWORDS}");
+            }
+            String keyword = String.join(" ", java.util.Arrays.copyOfRange(tokens, 1, tokens.length));
+            return new FindCommand(keyword);
         }
 
         // parse input and return relevant task command

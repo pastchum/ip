@@ -55,6 +55,10 @@ public abstract class Task {
         return this.taskType;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     @Override
     public String toString() {
         return "[" + (isCompleted ? "X" : " ") + "]  " + description;
