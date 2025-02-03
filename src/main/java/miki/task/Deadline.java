@@ -22,6 +22,8 @@ public class Deadline extends Task {
                 "        Deadline: "
                 + deadline.getDayOfMonth() + " "
                 + deadline.getMonth() + " "
-                + deadline.getYear();
+                + deadline.getYear() + ", "
+                + deadline.getHour() + ":"
+                + deadline.getMinute();
     }
 }

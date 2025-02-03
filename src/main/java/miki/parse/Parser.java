@@ -1,6 +1,7 @@
 package miki.parse;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import miki.command.*;
 import miki.exception.*;
@@ -87,14 +88,24 @@ public class Parser {
             // parse start date
             LocalDateTime startDate = null;
             try {
-                startDate = LocalDateTime.parse(tokens[startIndex + 1]);
+                String date = "";
+                for (int i = startIndex + 1; i < endIndex; i++) {
+                    date += tokens[i] + " ";
+                }
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
+                startDate = LocalDateTime.parse(date, formatter);
             } catch (Exception e) {
                 throw new EventException("The start date format is invalid.");
             }
             // parse end date
             LocalDateTime endDate = null;
             try {
-                endDate = LocalDateTime.parse(tokens[endIndex + 1]);
+                String date = "";
+                for (int i = endIndex + 1; i < tokens.length; i++) {
+                    date += tokens[i] + " ";
+                }
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
+                endDate = LocalDateTime.parse(date, formatter);
                 if (endDate.isAfter(startDate)) {
                     throw new EventException("The end date is before the start date.");
                 }
@@ -130,7 +141,13 @@ public class Parser {
             // parse deadline date
             LocalDateTime deadlineDate = null;
             try {
-                deadlineDate = LocalDateTime.parse(tokens[byIndex + 1]);
+                String date = "";
+                for (int i = byIndex + 1; i < tokens.length; i++) {
+                    date += tokens[i] + " ";
+                }
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
+                System.out.println(date);
+                deadlineDate = LocalDateTime.parse(date, formatter);
             } catch (Exception e) {
                 throw new DeadlineException("The deadline date format is invalid.");
             }

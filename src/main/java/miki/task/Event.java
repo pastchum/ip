@@ -24,10 +24,14 @@ public class Event extends Task {
                 "        From  "
                 + start.getDayOfMonth() + " "
                 + start.getMonth() + " "
-                + start.getYear()
+                + start.getYear() + ", "
+                + start.getHour() + ":"
+                + start.getMinute()
                 + "  to  "
                 + end.getDayOfMonth() + " "
                 + end.getMonth() + " "
-                + end.getYear();
+                + end.getYear() + ", "
+                + end.getHour() + ":"
+                + end.getMinute();
     }
 }
