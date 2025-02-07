@@ -83,6 +83,17 @@ public class Ui {
                         + task.toString());
     }
 
+    public void showFoundTasks(TaskList tasks) {
+        if (tasks.size() == 0) {
+            System.out.println("No tasks found Dawg.");
+            return;
+        }
+        System.out.println("Found tasks: ");
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println((i + 1) + ". " + tasks.getTask(i).toString());
+        }
+    }
+
     public void showExit() {
         System.out.println("End of session Dawg. Goodbye Dawg.\n");
         showLine();

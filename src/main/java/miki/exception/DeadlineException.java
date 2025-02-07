@@ -8,6 +8,6 @@ public class DeadlineException extends TaskException {
     public DeadlineException(String message) {
         super(message
                 + "Try the following format:\n"
-                + "Deadline  : Deadline {TASK DESCRIPTION} /by YYYY-MM-DD\n");
+                + "Deadline  : Deadline {TASK DESCRIPTION} /by YYYY-MM-DD HH:MM\n");
     }
 }

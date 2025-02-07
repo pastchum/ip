@@ -1,6 +1,7 @@
 package miki.parse;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import miki.command.*;
 import miki.exception.*;
@@ -51,6 +52,16 @@ public class Parser {
             return new DeleteCommand(taskNumber);
         }
 
+        // find
+        if (tokens[0].toLowerCase().contains("find")) {
+            if (tokens.length == 1) {
+                throw new MikiException("Please pass in the correct number of arguments.\n"
+                        + "Format   :   find {KEYWORDS}");
+            }
+            String keyword = String.join(" ", java.util.Arrays.copyOfRange(tokens, 1, tokens.length));
+            return new FindCommand(keyword);
+        }
+
         // parse input and return relevant task command
         if (tokens[0].toLowerCase().equals("event")) {
             int startIndex = -1, endIndex = -1;
@@ -85,16 +96,26 @@ public class Parser {
                 descBuilder.append(tokens[i]).append(" ");
             }
             // parse start date
-            LocalDate startDate = null;
+            LocalDateTime startDate = null;
             try {
-                startDate = LocalDate.parse(tokens[startIndex + 1]);
+                String date = "";
+                for (int i = startIndex + 1; i < endIndex; i++) {
+                    date += tokens[i] + " ";
+                }
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
+                startDate = LocalDateTime.parse(date, formatter);
             } catch (Exception e) {
                 throw new EventException("The start date format is invalid.");
             }
             // parse end date
-            LocalDate endDate = null;
+            LocalDateTime endDate = null;
             try {
-                endDate = LocalDate.parse(tokens[endIndex + 1]);
+                String date = "";
+                for (int i = endIndex + 1; i < tokens.length; i++) {
+                    date += tokens[i] + " ";
+                }
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
+                endDate = LocalDateTime.parse(date, formatter);
                 if (endDate.isAfter(startDate)) {
                     throw new EventException("The end date is before the start date.");
                 }
@@ -128,9 +149,15 @@ public class Parser {
                 descBuilder.append(tokens[i]).append(" ");
             }
             // parse deadline date
-            LocalDate deadlineDate = null;
+            LocalDateTime deadlineDate = null;
             try {
-                deadlineDate = LocalDate.parse(tokens[byIndex + 1]);
+                String date = "";
+                for (int i = byIndex + 1; i < tokens.length; i++) {
+                    date += tokens[i] + " ";
+                }
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
+                System.out.println(date);
+                deadlineDate = LocalDateTime.parse(date, formatter);
             } catch (Exception e) {
                 throw new DeadlineException("The deadline date format is invalid.");
             }

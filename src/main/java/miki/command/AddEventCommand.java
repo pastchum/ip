@@ -1,6 +1,6 @@
 package miki.command;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import miki.exception.MikiException;
 
@@ -14,10 +14,10 @@ import miki.ui.Ui;
 
 public class AddEventCommand extends Command {
     private String description;
-    private LocalDate start;
-    private LocalDate end;
+    private LocalDateTime start;
+    private LocalDateTime end;
 
-    public AddEventCommand(String description, LocalDate start, LocalDate end) {
+    public AddEventCommand(String description, LocalDateTime start, LocalDateTime end) {
         super(false);
         this.description = description;
         this.start = start;

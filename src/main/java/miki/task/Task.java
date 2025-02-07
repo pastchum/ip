@@ -1,6 +1,6 @@
 package miki.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import miki.exception.MikiException;
 
@@ -22,11 +22,11 @@ public abstract class Task {
         try {
             Task task = null;
             if (tokens[0].equals("D")) {
-                task = new Deadline(tokens[2], LocalDate.parse(tokens[3]));
+                task = new Deadline(tokens[2], LocalDateTime.parse(tokens[3]));
             } else if (tokens[0].equals("E")) {
                 task = new Event(tokens[2],
-                        LocalDate.parse(tokens[3]),
-                        LocalDate.parse(tokens[4]));
+                        LocalDateTime.parse(tokens[3]),
+                        LocalDateTime.parse(tokens[4]));
             } else {
                 task = new ToDo(tokens[2]);
             }
@@ -53,6 +53,10 @@ public abstract class Task {
 
     public TaskType getTaskType() {
         return this.taskType;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     @Override
