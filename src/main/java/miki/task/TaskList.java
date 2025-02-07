@@ -33,7 +33,9 @@ public class TaskList {
     public TaskList findTasks(String keyword) {
         List<Task> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
-            if (task.getDescription().contains(keyword)) {
+            if (task.getDescription().contains(keyword)
+                    || task.getTaskType().toString().toLowerCase().contains(keyword)
+                    || task.toString().toLowerCase().contains(keyword)) {
                 foundTasks.add(task);
             }
         }
