@@ -23,7 +23,7 @@ public class Deadline extends Task {
                 + deadline.getDayOfMonth() + " "
                 + deadline.getMonth() + " "
                 + deadline.getYear() + ", "
-                + deadline.getHour() + ":"
-                + deadline.getMinute();
+                + String.format("%02d", deadline.getHour()) + ":"
+                + String.format("%02d", deadline.getMinute());
     }
 }

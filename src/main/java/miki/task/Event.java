@@ -25,13 +25,13 @@ public class Event extends Task {
                 + start.getDayOfMonth() + " "
                 + start.getMonth() + " "
                 + start.getYear() + ", "
-                + start.getHour() + ":"
-                + start.getMinute()
+                + String.format("%02d", start.getHour()) + ":"
+                + String.format("%02d", start.getMinute())
                 + "  to  "
                 + end.getDayOfMonth() + " "
                 + end.getMonth() + " "
                 + end.getYear() + ", "
-                + end.getHour() + ":"
-                + end.getMinute();
+                + String.format("%02d", end.getHour()) + ":"
+                + String.format("%02d", end.getMinute());
     }
 }
