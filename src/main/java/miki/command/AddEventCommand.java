@@ -29,7 +29,7 @@ public class AddEventCommand extends Command {
         Task task = new Event(description, start, end);
 
         tasks.addTask(task);
-        ui.showTaskAdded(task, tasks.size());
+        ui.showTaskAdded(task, tasks.getSize());
         storage.save(tasks.getTaskList());
         return;
     }

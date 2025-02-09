@@ -66,12 +66,12 @@ public class Ui {
     }
 
     public void showList(TaskList tasks) {
-        if (tasks.size() == 0) { // account for no tasks
+        if (tasks.getSize() == 0) { // account for no tasks
             System.out.println("There are no tasks to display.");
             return;
         }
         System.out.println("List of tasks: "); // print out tasks 1 by 1
-        for (int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.getSize(); i++) {
             System.out.println((i + 1) + ". " + tasks.getTask(i).toString());
         }
     }
@@ -84,12 +84,12 @@ public class Ui {
     }
 
     public void showFoundTasks(TaskList tasks) {
-        if (tasks.size() == 0) {
+        if (tasks.getSize() == 0) {
             System.out.println("No tasks found Dawg.");
             return;
         }
         System.out.println("Found tasks: ");
-        for (int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.getSize(); i++) {
             System.out.println((i + 1) + ". " + tasks.getTask(i).toString());
         }
     }

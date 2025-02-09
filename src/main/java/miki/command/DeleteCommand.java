@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
-        if (taskNumber > tasks.size()) {// check task number is within the range of available tasks
+        if (taskNumber > tasks.getSize()) {// check task number is within the range of available tasks
             throw new DeleteFailedException("The task you requested to delete does not exist.");
         }
         Task task = tasks.getTask(taskNumber - 1);
