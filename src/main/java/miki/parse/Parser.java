@@ -6,7 +6,17 @@ import java.time.format.DateTimeFormatter;
 import miki.command.*;
 import miki.exception.*;
 
+/**
+ * Parser class handles the parsing of user input.
+ */
 public class Parser {
+    /**
+     * Parses the user input and returns the relevant command.
+     *
+     * @param line user input.
+     * @return relevant command.
+     * @throws MikiException if the user input is invalid.
+     */
     public static Command handleUserCommand(String line) throws MikiException {
         // empty input
         if (line.length() == 0) {
