@@ -12,11 +12,17 @@ import miki.task.TaskList;
 
 import miki.ui.Ui;
 
+/**
+ * Represents the main class of the Miki chatbot.
+ */
 public class Miki {
     private static TaskList tasks;
     private Storage storage;
     private Ui ui;
 
+    /**
+     * Constructor for Miki.
+     */
     public Miki() {
         ui = new Ui();
         try {
@@ -29,6 +35,9 @@ public class Miki {
         }
     }
 
+    /**
+     * Runs the Miki chatbot.
+     */
     public void run() {
         ui.showIntro();
 
