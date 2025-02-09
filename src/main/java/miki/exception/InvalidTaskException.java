@@ -1,5 +1,8 @@
 package miki.exception;
 
+/**
+ * Represents an exception that occurs when a task is not formatted correctly.
+ */
 public class InvalidTaskException extends TaskException {
     public InvalidTaskException() {
         super();

@@ -2,22 +2,38 @@ package miki.task;
 
 import java.time.LocalDateTime;
 
+/**
+ * Event class represents a task with a start and end time.
+ */
 public class Event extends Task {
     private LocalDateTime start;
     private LocalDateTime end;
 
+    /**
+     * Constructor for Event class.
+     */
     public Event(String description, LocalDateTime start, LocalDateTime end) {
         super(description, TaskType.EVENT);
         this.start = start;
         this.end = end;
     }
 
+    /**
+     * Returns the task in storage format.
+     *
+     * @return task in storage format.
+     */
     @Override
     public String toStorageFormat() {
         return "E | " + super.toStorageFormat()
                 + " | " + start + " | " + end;
     }
 
+    /**
+     * Returns the task in string format.
+     *
+     * @return task in string format.
+     */
     @Override
     public String toString() {
         return "[E] " + super.toString() + "\n" +

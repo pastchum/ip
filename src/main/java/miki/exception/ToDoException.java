@@ -1,5 +1,8 @@
 package miki.exception;
 
+/**
+ * Represents an exception that occurs when a todo task fails.
+ */
 public class ToDoException extends TaskException {
     public ToDoException() {
         super();

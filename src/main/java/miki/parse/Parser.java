@@ -6,23 +6,34 @@ import java.time.format.DateTimeFormatter;
 import miki.command.*;
 import miki.exception.*;
 
+/**
+ * Parser class handles the parsing of user input.
+ */
 public class Parser {
+    /**
+     * Parses the user input and returns the relevant command.
+     *
+     * @param line user input.
+     * @return relevant command.
+     * @throws MikiException if the user input is invalid.
+     */
     public static Command handleUserCommand(String line) throws MikiException {
         // empty input
-        if (line.length() == 0) {
+        if (line.isEmpty()) {
             throw new NoCommandException("No command received Dawg. Try that again.");
         }
-        String[] tokens = line.split(" ");
 
         // list
-        if (tokens[0].toLowerCase().equals("list")) {
-            if (tokens.length != 1) {
+        if (line.toLowerCase().startsWith("list")) {
+            if (!line.toLowerCase().equals("list")) {
                 throw new MikiException("List command has no arguments. Please try again.");
             }
             return new ListCommand();
         }
+
         // mark
-        if (tokens[0].toLowerCase().equals("mark")) {
+        if (line.toLowerCase().startsWith("mark")) {
+            String[] tokens = line.split(" ");
             if (tokens.length != 2) {// check that the unmark function is properly called
                 throw new CheckException("Please pass in the correct number of arguments.\n"
                         + "Format   :   mark {TASKNUMBER}");
@@ -32,7 +43,8 @@ public class Parser {
         }
 
         // unmark
-        if (tokens[0].toLowerCase().equals("unmark")) {
+        if (line.toLowerCase().startsWith("unmark")) {
+            String[] tokens = line.split(" ");
             if (tokens.length != 2) {// check that the unmark function is properly called
                 throw new CheckException("Please pass in the correct number of arguments for the Unmark command\n"
                         + "Format   :   unmark {TASKNUMBER}");
@@ -42,9 +54,9 @@ public class Parser {
         }
 
         // delete
-        if (tokens[0].toLowerCase().contains("delete")) {
+        if (line.toLowerCase().startsWith("delete")) {
+            String[] tokens = line.split(" ");
             if (tokens.length != 2) {
-                System.out.println(tokens.length);
                 throw new DeleteFailedException("Please pass in the correct number of arguments.\n"
                         + "Format   :   delete {TASKNUMBER}");
             }
@@ -53,69 +65,37 @@ public class Parser {
         }
 
         // find
-        if (tokens[0].toLowerCase().contains("find")) {
-            if (tokens.length == 1) {
+        if (line.toLowerCase().startsWith("find")) {
+            String[] tokens = line.split(" ", 2);
+            if (tokens[1].isEmpty()) {
                 throw new MikiException("Please pass in the correct number of arguments.\n"
                         + "Format   :   find {KEYWORDS}");
             }
-            String keyword = String.join(" ", java.util.Arrays.copyOfRange(tokens, 1, tokens.length));
-            return new FindCommand(keyword);
+            return new FindCommand(tokens[1]);
         }
 
         // parse input and return relevant task command
-        if (tokens[0].toLowerCase().equals("event")) {
-            int startIndex = -1, endIndex = -1;
-            for (int i = tokens.length - 1; i > 0; i--) {
-                if (tokens[i].equals("/from")) {
-                    if (startIndex != -1) {
-                        throw new EventException("The event task you wrote has too many start timings.\n");
-                    }
-                    startIndex = i;
-                }
+        if (line.toLowerCase().startsWith("event")) {
+            String[] tokens = line.split(" ", 2);
+            if (tokens.length == 1) {
+                throw new EventException("Your task lacks details.\n");
             }
-            if (startIndex == -1) {
-                throw new EventException("The event task you wrote has no start date.\n");
-            }
-            for (int i = startIndex; i < tokens.length; i++) {
-                if (tokens[i].equals("/to")) {
-                    if (endIndex != -1) {
-                        throw new EventException("The event task you wrote has too many end timings.\n");
-                    }
-                    endIndex = i;
-                }
-            }
-            if (endIndex == -1) {
-                throw new EventException("The event task you wrote has no end timing.\n");
-            }
-            if (startIndex == 1) {
-                throw new EventException("Your task lacks a description.\n");
-            }
-            // parse description
-            StringBuilder descBuilder = new StringBuilder();
-            for (int i = 1; i < startIndex; i++) {
-                descBuilder.append(tokens[i]).append(" ");
-            }
+            String[] taskDetails = tokens[1].split("/from|/to", 3);
+
             // parse start date
             LocalDateTime startDate = null;
             try {
-                String date = "";
-                for (int i = startIndex + 1; i < endIndex; i++) {
-                    date += tokens[i] + " ";
-                }
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
-                startDate = LocalDateTime.parse(date, formatter);
+                startDate = LocalDateTime.parse(taskDetails[1], formatter);
             } catch (Exception e) {
                 throw new EventException("The start date format is invalid.");
             }
+
             // parse end date
             LocalDateTime endDate = null;
             try {
-                String date = "";
-                for (int i = endIndex + 1; i < tokens.length; i++) {
-                    date += tokens[i] + " ";
-                }
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
-                endDate = LocalDateTime.parse(date, formatter);
+                endDate = LocalDateTime.parse(taskDetails[2], formatter);
                 if (endDate.isAfter(startDate)) {
                     throw new EventException("The end date is before the start date.");
                 }
@@ -123,57 +103,35 @@ public class Parser {
                 throw new EventException("The end date format is invalid.");
             }
 
-            return new AddEventCommand(descBuilder.toString().trim(),
+            return new AddEventCommand(taskDetails[0].trim(),
                     startDate,
                     endDate);
 
-        } else if (tokens[0].toLowerCase().equals("deadline")) {
-            int byIndex = -1;
-            for (int i = tokens.length - 2; i > 0; i--) {
-                if (tokens[i].equals("/by")) {
-                    if (byIndex != -1) {
-                        throw new DeadlineException("The deadline task you wrote has too many deadlines.");
-                    }
-                    byIndex = i;
-                }
+        } else if (line.toLowerCase().startsWith("deadline")) {
+            String[] tokens = line.split(" ", 2);
+            if (tokens.length == 1) {
+                throw new DeadlineException("Your task lacks details.\n");
             }
-            if (byIndex == -1) {
-                throw new DeadlineException("The deadline task you wrote does not have a deadline.");
-            }
-            if (byIndex == 1) {
-                throw new DeadlineException("Your task lacks a description.\n");
-            }
-            // parse description
-            StringBuilder descBuilder = new StringBuilder();
-            for (int i = 1; i < byIndex; i++) {
-                descBuilder.append(tokens[i]).append(" ");
-            }
+            String[] taskDetails = tokens[1].split("/by", 2);
+
             // parse deadline date
             LocalDateTime deadlineDate = null;
             try {
-                String date = "";
-                for (int i = byIndex + 1; i < tokens.length; i++) {
-                    date += tokens[i] + " ";
-                }
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm ");
-                System.out.println(date);
-                deadlineDate = LocalDateTime.parse(date, formatter);
+                deadlineDate = LocalDateTime.parse(taskDetails[1], formatter);
             } catch (Exception e) {
                 throw new DeadlineException("The deadline date format is invalid.");
             }
-            return new AddDeadlineCommand(descBuilder.toString().trim(),
+            return new AddDeadlineCommand(taskDetails[0].trim(),
                     deadlineDate);
 
-        } else if (tokens[0].toLowerCase().equals("todo")) {
+        } else if (line.toLowerCase().startsWith("todo")) {
+            String tokens[] = line.split(" ", 2);
             if (tokens.length == 1) {
                 throw new ToDoException("Your task lacks a description.\n");
             }
-            // parse description
-            StringBuilder descBuilder = new StringBuilder();
-            for (int i = 1; i < tokens.length; i++) {
-                descBuilder.append(tokens[i]).append(" ");
-            }
-            return new AddToDoCommand(descBuilder.toString().trim());
+
+            return new AddToDoCommand(tokens[1].trim());
         }
 
         throw new InvalidTaskException("What are you saying Dawg.\n");
