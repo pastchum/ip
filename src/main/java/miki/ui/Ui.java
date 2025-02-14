@@ -40,20 +40,19 @@ public class Ui {
      * Method to show intro
      */
     public String showIntro() {
-        String logo = "      __  _________ __ ____\n" + //
-                "     /  |/  /  _/ //_//  _/\n" + //
-                "    / /|_/ // // ,<   / /  \n" + //
-                "   / /  / // // /| |_/ /   \n" + //
-                "  /_/  /_/___/_/ |_/___/   \n" +
-                "                           \n" +
-                "          ฅ^•ﻌ•^ฅ         "; //
+        String logo = "      __  _________ __ ____\n"
+                + "     /  |/  /  _/ //_//  _/\n"
+                + "    / /|_/ // // ,<   / /  \n"
+                + "   / /  / // // /| |_/ /   \n"
+                + "  /_/  /_/___/_/ |_/___/   \n"
+                + "                           \n"
+                + "          ฅ^•ﻌ•^ฅ         ";
 
         String intro = "Hello from \n"
-                + logo +
-                "\n" +
-                "Your ChatBot assistant Dawg :). \n"
-                +
-                "\n"
+                + logo
+                + "\n"
+                + "Your ChatBot assistant Dawg :). \n"
+                + "\n"
                 + "Please enter a command to start: \n";
 
         showLine();

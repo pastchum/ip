@@ -1,15 +1,10 @@
 package miki;
 
-import miki.exception.MikiException;
-
 import miki.command.Command;
-
+import miki.exception.MikiException;
 import miki.parse.Parser;
-
 import miki.storage.Storage;
-
 import miki.task.TaskList;
-
 import miki.ui.Ui;
 
 /**

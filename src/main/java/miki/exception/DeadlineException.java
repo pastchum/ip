@@ -9,6 +9,11 @@ public class DeadlineException extends TaskException {
         super();
     }
 
+    /**
+     * Constructor for DeadlineException.
+     *
+     * @param message The error message.
+     */
     public DeadlineException(String message) {
         super(message
                 + "Try the following format:\n"

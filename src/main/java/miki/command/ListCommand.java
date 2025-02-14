@@ -1,11 +1,8 @@
 package miki.command;
 
 import miki.exception.MikiException;
-
 import miki.storage.Storage;
-
 import miki.task.TaskList;
-
 import miki.ui.Ui;
 
 /**
@@ -18,7 +15,7 @@ public class ListCommand extends Command {
 
     /**
      * Executes the command to list all tasks.
-     * 
+     *
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.

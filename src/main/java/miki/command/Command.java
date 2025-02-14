@@ -1,11 +1,8 @@
 package miki.command;
 
 import miki.exception.MikiException;
-
 import miki.storage.Storage;
-
 import miki.task.TaskList;
-
 import miki.ui.Ui;
 
 /**
@@ -16,7 +13,7 @@ public abstract class Command {
 
     /**
      * Constructor for Command.
-     * 
+     *
      * @param isExit Boolean value to indicate if the command is an exit command.
      */
     public Command(boolean isExit) {
@@ -25,7 +22,7 @@ public abstract class Command {
 
     /**
      * Executes the command.
-     * 
+     *
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.

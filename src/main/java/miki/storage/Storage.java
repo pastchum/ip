@@ -1,17 +1,15 @@
 package miki.storage;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import miki.exception.MikiException;
-
 import miki.task.Task;
 
 /**
@@ -23,7 +21,7 @@ public class Storage {
 
     /**
      * Creates a new storage object with the specified file path.
-     * 
+     *
      * @param filePath The file path to the file to load and save tasks from.
      */
     public Storage(String filePath) {
@@ -32,7 +30,7 @@ public class Storage {
 
     /**
      * Loads tasks from the file specified in the file path.
-     * 
+     *
      * @return A list of tasks loaded from the file.
      * @throws MikiException If there is an error loading tasks from the file.
      */
@@ -59,7 +57,7 @@ public class Storage {
 
     /**
      * Saves the specified list of tasks to the file specified in the file path.
-     * 
+     *
      * @param tasks The list of tasks to save to the file.
      * @throws MikiException If there is an error saving tasks to the file.
      */

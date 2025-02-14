@@ -3,13 +3,10 @@ package miki.command;
 import java.time.LocalDateTime;
 
 import miki.exception.MikiException;
-
 import miki.storage.Storage;
-
-import miki.task.TaskList;
-import miki.task.Task;
 import miki.task.Deadline;
-
+import miki.task.Task;
+import miki.task.TaskList;
 import miki.ui.Ui;
 
 /**
@@ -21,7 +18,7 @@ public class AddDeadlineCommand extends Command {
 
     /**
      * Constructor for AddDeadlineCommand.
-     * 
+     *
      * @param description Description of the deadline task.
      * @param deadline    Deadline of the deadline task.
      */
@@ -33,7 +30,7 @@ public class AddDeadlineCommand extends Command {
 
     /**
      * Executes the command to add a deadline task.
-     * 
+     *
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.

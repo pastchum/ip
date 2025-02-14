@@ -1,13 +1,10 @@
 package miki.command;
 
-import miki.exception.MikiException;
 import miki.exception.CheckException;
-
+import miki.exception.MikiException;
 import miki.storage.Storage;
-
-import miki.task.TaskList;
 import miki.task.Task;
-
+import miki.task.TaskList;
 import miki.ui.Ui;
 
 /**
@@ -18,7 +15,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * Constructor for UnmarkCommand.
-     * 
+     *
      * @param taskNumber The task number to unmark as completed.
      */
     public UnmarkCommand(int taskNumber) {
@@ -28,7 +25,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * Executes the command to unmark a task as completed.
-     * 
+     *
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.
@@ -36,7 +33,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
-        if (taskNumber > tasks.getSize()) {// check task number is within the range of available tasks
+        if (taskNumber > tasks.getSize()) { // check task number is within the range of available tasks
             throw new CheckException("The task you requested to unmark does not exist.");
         }
         Task task = tasks.getTask(taskNumber - 1);

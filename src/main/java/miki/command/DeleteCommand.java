@@ -1,13 +1,10 @@
 package miki.command;
 
-import miki.exception.MikiException;
 import miki.exception.DeleteFailedException;
-
+import miki.exception.MikiException;
 import miki.storage.Storage;
-
-import miki.task.TaskList;
 import miki.task.Task;
-
+import miki.task.TaskList;
 import miki.ui.Ui;
 
 /**
@@ -18,7 +15,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Constructor for DeleteCommand.
-     * 
+     *
      * @param taskNumber Task number of the task to be deleted.
      */
     public DeleteCommand(int taskNumber) {
@@ -28,7 +25,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Executes the command to delete a task.
-     * 
+     *
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.
@@ -36,7 +33,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
-        if (taskNumber > tasks.getSize()) {// check task number is within the range of available tasks
+        if (taskNumber > tasks.getSize()) { // check task number is within the range of available tasks
             throw new DeleteFailedException("The task you requested to delete does not exist.");
         }
         Task task = tasks.getTask(taskNumber - 1);
