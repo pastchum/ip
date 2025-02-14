@@ -31,7 +31,7 @@ public abstract class Command {
      * @param storage Storage object.
      * @throws MikiException If an error occurs during the execution of the command.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws MikiException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException;
 
     public boolean checkExit() {
         return this.isExit;

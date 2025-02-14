@@ -23,6 +23,11 @@ public class Parser {
             throw new NoCommandException("No command received Dawg. Try that again.");
         }
 
+        // exit
+        if (line.toLowerCase().equals("bye")) {
+            return new ExitCommand();
+        }
+
         // list
         if (line.toLowerCase().startsWith("list")) {
             if (!line.toLowerCase().equals("list")) {
