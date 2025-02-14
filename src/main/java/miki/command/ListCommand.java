@@ -25,8 +25,8 @@ public class ListCommand extends Command {
      * @throws MikiException If an error occurs during the execution of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
-        ui.showList(tasks);
-        return;
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
+        String output = ui.showList(tasks);
+        return output;
     }
 }

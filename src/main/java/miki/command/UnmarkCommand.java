@@ -35,7 +35,7 @@ public class UnmarkCommand extends Command {
      * @throws MikiException If an error occurs during the execution of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
         if (taskNumber > tasks.getSize()) {// check task number is within the range of available tasks
             throw new CheckException("The task you requested to unmark does not exist.");
         }
@@ -45,6 +45,7 @@ public class UnmarkCommand extends Command {
                     "Task " + taskNumber + " has yet to be completed.\n");
         }
         task.toggleCompletion();
-        ui.showTaskCompletion(task, taskNumber);
+        String output = ui.showTaskCompletion(task, taskNumber);
+        return output;
     }
 }

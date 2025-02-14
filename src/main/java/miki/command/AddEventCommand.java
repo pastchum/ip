@@ -43,12 +43,12 @@ public class AddEventCommand extends Command {
      * @throws MikiException If an error occurs during the execution of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
         Task task = new Event(description, start, end);
 
         tasks.addTask(task);
-        ui.showTaskAdded(task, tasks.getSize());
         storage.save(tasks.getTaskList());
-        return;
+        String output = ui.showTaskAdded(task, tasks.getSize());
+        return output;
     }
 }

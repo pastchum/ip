@@ -25,7 +25,7 @@ public class ExitCommand extends Command {
      * @throws MikiException If an error occurs during execution.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
-        return;
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
+        return ui.showExit();
     }
 }

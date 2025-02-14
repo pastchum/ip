@@ -35,14 +35,14 @@ public class DeleteCommand extends Command {
      * @throws MikiException If an error occurs during the execution of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
         if (taskNumber > tasks.getSize()) {// check task number is within the range of available tasks
             throw new DeleteFailedException("The task you requested to delete does not exist.");
         }
         Task task = tasks.getTask(taskNumber - 1);
         tasks.deleteTask(taskNumber - 1);
         storage.save(tasks.getTaskList());
-        ui.showTaskDeleted(task, taskNumber);
-        return;
+        String output = ui.showTaskDeleted(task, taskNumber);
+        return output;
     }
 }
