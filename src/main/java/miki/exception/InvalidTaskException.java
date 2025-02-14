@@ -8,6 +8,11 @@ public class InvalidTaskException extends TaskException {
         super();
     }
 
+    /**
+     * Constructor for InvalidTaskException.
+     *
+     * @param message The error message.
+     */
     public InvalidTaskException(String message) {
         super(message
                 + "Use the following formats to set tasks:\n"

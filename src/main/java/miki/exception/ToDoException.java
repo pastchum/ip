@@ -8,6 +8,11 @@ public class ToDoException extends TaskException {
         super();
     }
 
+    /**
+     * Constructor for ToDoException.
+     *
+     * @param message The error message.
+     */
     public ToDoException(String message) {
         super(message
                 + "Try the following format:\n"

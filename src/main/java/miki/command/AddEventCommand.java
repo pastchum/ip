@@ -3,13 +3,10 @@ package miki.command;
 import java.time.LocalDateTime;
 
 import miki.exception.MikiException;
-
 import miki.storage.Storage;
-
-import miki.task.TaskList;
-import miki.task.Task;
 import miki.task.Event;
-
+import miki.task.Task;
+import miki.task.TaskList;
 import miki.ui.Ui;
 
 /**
@@ -22,7 +19,7 @@ public class AddEventCommand extends Command {
 
     /**
      * Constructor for AddEventCommand.
-     * 
+     *
      * @param description Description of the event task.
      * @param start       Start time of the event task.
      * @param end         End time of the event task.
@@ -36,7 +33,7 @@ public class AddEventCommand extends Command {
 
     /**
      * Executes the command to add an event task.
-     * 
+     *
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.

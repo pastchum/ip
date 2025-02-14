@@ -14,9 +14,9 @@ public abstract class Task {
 
     /**
      * Constructor for Task.
-     * 
+     *
      * @param description The description of the task.
-     * 
+     *
      * @param taskType    The type of the task.
      */
     public Task(String description, TaskType taskType) {
@@ -27,9 +27,9 @@ public abstract class Task {
 
     /**
      * Parses a task from a line in the storage file.
-     * 
+     *
      * @param line The line to parse the task from.
-     * 
+     *
      * @return The task parsed from the line.
      */
     public static Task parseTaskFromFile(String line) throws MikiException {
@@ -64,7 +64,7 @@ public abstract class Task {
 
     /**
      * Checks if the task is completed.
-     * 
+     *
      * @return True if the task is completed, false otherwise.
      */
     public boolean checkCompleted() {
@@ -73,7 +73,7 @@ public abstract class Task {
 
     /**
      * Converts the task to a string for storage.
-     * 
+     *
      * @return The task in storage format.
      */
     public String toStorageFormat() {
@@ -82,7 +82,7 @@ public abstract class Task {
 
     /**
      * Returns the type of the task.
-     * 
+     *
      * @return The type of the task.
      */
     public TaskType getTaskType() {
@@ -91,7 +91,7 @@ public abstract class Task {
 
     /**
      * Returns the description of the task.
-     * 
+     *
      * @return String of the description of the task.
      */
     public String getDescription() {
@@ -100,7 +100,7 @@ public abstract class Task {
 
     /**
      * Returns the task in a string format.
-     * 
+     *
      * @return The task in string format.
      */
     @Override

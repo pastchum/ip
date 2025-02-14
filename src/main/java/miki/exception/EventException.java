@@ -9,6 +9,11 @@ public class EventException extends TaskException {
         super();
     }
 
+    /**
+     * Constructor for EventException.
+     *
+     * @param message The error message.
+     */
     public EventException(String message) {
         super(message
                 + "Try the following format:\n"

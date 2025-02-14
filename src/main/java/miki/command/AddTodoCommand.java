@@ -1,12 +1,10 @@
 package miki.command;
 
 import miki.exception.MikiException;
-
 import miki.storage.Storage;
 import miki.task.Task;
 import miki.task.TaskList;
 import miki.task.ToDo;
-
 import miki.ui.Ui;
 
 /**
@@ -17,7 +15,7 @@ public class AddToDoCommand extends Command {
 
     /**
      * Constructor for AddToDoCommand.
-     * 
+     *
      * @param description Description of the ToDo task.
      */
     public AddToDoCommand(String description) {
@@ -27,7 +25,7 @@ public class AddToDoCommand extends Command {
 
     /**
      * Executes the command to add a ToDo task.
-     * 
+     *
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.

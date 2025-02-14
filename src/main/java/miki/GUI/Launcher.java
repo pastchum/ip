@@ -1,4 +1,4 @@
-package miki.GUI;
+package miki.gui;
 
 import javafx.application.Application;
 

@@ -3,8 +3,26 @@ package miki.parse;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import miki.command.*;
-import miki.exception.*;
+// Commands
+import miki.command.AddDeadlineCommand;
+import miki.command.AddEventCommand;
+import miki.command.AddToDoCommand;
+import miki.command.Command;
+import miki.command.DeleteCommand;
+import miki.command.ExitCommand;
+import miki.command.FindCommand;
+import miki.command.ListCommand;
+import miki.command.MarkCommand;
+import miki.command.UnmarkCommand;
+// Exceptions
+import miki.exception.CheckException;
+import miki.exception.DeadlineException;
+import miki.exception.DeleteFailedException;
+import miki.exception.EventException;
+import miki.exception.InvalidTaskException;
+import miki.exception.MikiException;
+import miki.exception.NoCommandException;
+import miki.exception.ToDoException;
 
 /**
  * Parser class handles the parsing of user input.
@@ -39,7 +57,7 @@ public class Parser {
         // mark
         if (line.toLowerCase().startsWith("mark")) {
             String[] tokens = line.split(" ");
-            if (tokens.length != 2) {// check that the unmark function is properly called
+            if (tokens.length != 2) { // check that the unmark function is properly called
                 throw new CheckException("Please pass in the correct number of arguments.\n"
                         + "Format   :   mark {TASKNUMBER}");
             }
@@ -50,7 +68,7 @@ public class Parser {
         // unmark
         if (line.toLowerCase().startsWith("unmark")) {
             String[] tokens = line.split(" ");
-            if (tokens.length != 2) {// check that the unmark function is properly called
+            if (tokens.length != 2) { // check that the unmark function is properly called
                 throw new CheckException("Please pass in the correct number of arguments for the Unmark command\n"
                         + "Format   :   unmark {TASKNUMBER}");
             }
@@ -131,7 +149,7 @@ public class Parser {
                     deadlineDate);
 
         } else if (line.toLowerCase().startsWith("todo")) {
-            String tokens[] = line.split(" ", 2);
+            String[] tokens = line.split(" ", 2);
             if (tokens.length == 1) {
                 throw new ToDoException("Your task lacks a description.\n");
             }

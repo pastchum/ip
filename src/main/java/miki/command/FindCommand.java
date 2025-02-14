@@ -1,11 +1,8 @@
 package miki.command;
 
 import miki.exception.MikiException;
-
 import miki.storage.Storage;
-
 import miki.task.TaskList;
-
 import miki.ui.Ui;
 
 /**
@@ -16,7 +13,7 @@ public class FindCommand extends Command {
 
     /**
      * Constructor for FindCommand.
-     * 
+     *
      * @param keyword Keyword to search for.
      */
     public FindCommand(String keyword) {
@@ -26,7 +23,7 @@ public class FindCommand extends Command {
 
     /**
      * Executes the command to find tasks based on a keyword.
-     * 
+     *
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.

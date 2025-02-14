@@ -1,4 +1,4 @@
-package miki.GUI;
+package miki.gui;
 
 import java.io.IOException;
 import java.util.Collections;
