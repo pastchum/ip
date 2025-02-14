@@ -52,7 +52,7 @@ public class Miki {
         }
     }
 
-    public boolean checKExit() {
+    public boolean checkExit() {
         return isExit;
     }
 
