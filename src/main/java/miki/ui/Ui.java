@@ -1,6 +1,7 @@
 package miki.ui;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import miki.task.Task;
 import miki.task.TaskList;
@@ -121,9 +122,9 @@ public class Ui {
         }
         String output = "Here are the tasks in your list Dawg:\n";
         // add tasks to output string 1 by 1
-        for (int i = 0; i < tasks.getSize(); i++) {
-            output += (i + 1) + ". " + tasks.getTask(i).toString() + "\n";
-        }
+        output += tasks.getTaskList().stream()
+                .map(task -> (tasks.getTaskList().indexOf(task) + 1) + ". " + task.toString())
+                .collect(Collectors.joining("\n")) + "\n";
         System.out.println(output);
         return output;
     }
