@@ -34,6 +34,7 @@ public class AddToDoCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
         Task task = new ToDo(description);
+        assert task != null : "Task should not be null";
 
         tasks.addTask(task);
         storage.save(tasks.getTaskList());

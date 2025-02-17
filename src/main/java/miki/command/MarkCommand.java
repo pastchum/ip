@@ -37,6 +37,8 @@ public class MarkCommand extends Command {
             throw new CheckException("The task you requested to mark does not exist.");
         }
         Task task = tasks.getTask(taskNumber - 1);
+        assert task != null : "Task should not be null";
+
         if (task.checkCompleted()) {
             throw new CheckException(
                     "Task " + taskNumber + " has already been completed.\n");

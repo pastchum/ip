@@ -37,6 +37,8 @@ public class DeleteCommand extends Command {
             throw new DeleteFailedException("The task you requested to delete does not exist.");
         }
         Task task = tasks.getTask(taskNumber - 1);
+        assert task != null : "Task should not be null";
+
         tasks.deleteTask(taskNumber - 1);
         storage.save(tasks.getTaskList());
         String output = ui.showTaskDeleted(task, taskNumber);
