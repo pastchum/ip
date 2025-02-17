@@ -17,7 +17,6 @@ import miki.command.UnmarkCommand;
 // Exceptions
 import miki.exception.CheckException;
 import miki.exception.DeadlineException;
-import miki.exception.DeleteFailedException;
 import miki.exception.EventException;
 import miki.exception.InvalidTaskException;
 import miki.exception.MikiException;
@@ -68,10 +67,8 @@ public class Parser {
         // unmark
         if (line.toLowerCase().startsWith("unmark")) {
             String[] tokens = line.split(" ");
-            if (tokens.length != 2) { // check that the unmark function is properly called
-                throw new CheckException("Please pass in the correct number of arguments for the Unmark command\n"
-                        + "Format   :   unmark {TASKNUMBER}");
-            }
+            assert tokens.length == 2 : "Unmark command should have 2 arguments";
+
             int taskNumber = Integer.parseInt(tokens[1]);
             return new UnmarkCommand(taskNumber);
         }
@@ -79,10 +76,8 @@ public class Parser {
         // delete
         if (line.toLowerCase().startsWith("delete")) {
             String[] tokens = line.split(" ");
-            if (tokens.length != 2) {
-                throw new DeleteFailedException("Please pass in the correct number of arguments.\n"
-                        + "Format   :   delete {TASKNUMBER}");
-            }
+            assert tokens.length == 2 : "Delete command should have 2 arguments";
+
             int taskNumber = Integer.parseInt(tokens[1]);
             return new DeleteCommand(taskNumber);
         }
@@ -90,10 +85,8 @@ public class Parser {
         // find
         if (line.toLowerCase().startsWith("find")) {
             String[] tokens = line.split(" ", 2);
-            if (tokens[1].isEmpty()) {
-                throw new MikiException("Please pass in the correct number of arguments.\n"
-                        + "Format   :   find {KEYWORDS}");
-            }
+            assert tokens[1] != null : "Find command should have a keyword";
+
             return new FindCommand(tokens[1]);
         }
 
