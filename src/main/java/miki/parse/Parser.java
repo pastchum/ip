@@ -177,30 +177,24 @@ public class Parser {
      */
     public static AddEventCommand handlEventCommand(String line) throws MikiException {
         String[] tokens = line.split(" ", 2);
-        if (tokens.length == 1) {
-            throw new EventException("Your task lacks details.\n");
+        if (tokens.length != 2) {
+            throw new EventException("Incorrect fromat for Event command");
         }
         String[] taskDetails = tokens[1].split("/from|/to", 3);
 
         // parse start date
         String startDateString = taskDetails[1].trim();
         LocalDateTime startDate = null;
-        try {
-            startDate = DateParser.parseDate(startDateString);
-        } catch (Exception e) {
-            throw new EventException("The start date format is invalid.");
-        }
 
         // parse end date
         String endDateString = taskDetails[2].trim();
         LocalDateTime endDate = null;
         try {
+            startDate = DateParser.parseDate(startDateString);
             endDate = DateParser.parseDate(endDateString);
-            if (endDate.isAfter(startDate)) {
-                throw new EventException("The end date is before the start date.");
-            }
+            assert endDate.isAfter(startDate) : "End date must be after start date";
         } catch (Exception e) {
-            throw new EventException("The end date format is invalid.");
+            throw new EventException(e.getMessage());
         }
 
         return new AddEventCommand(taskDetails[0].trim(),
@@ -217,8 +211,8 @@ public class Parser {
      */
     public static AddDeadlineCommand handleDeadlineCommand(String line) throws MikiException {
         String[] tokens = line.split(" ", 2);
-        if (tokens.length == 1) {
-            throw new DeadlineException("Your task lacks details.\n");
+        if (tokens.length != 2) {
+            throw new DeadlineException("Incorrect format for Deadline command");
         }
         String[] taskDetails = tokens[1].split("/by", 2);
         String deadlineDateString = taskDetails[1].trim();
