@@ -1,6 +1,7 @@
 package miki.task;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import miki.exception.MikiException;
 
@@ -11,6 +12,7 @@ public abstract class Task {
     private String description;
     private boolean isCompleted;
     private TaskType taskType;
+    private String[] tags;
 
     /**
      * Constructor for Task.
@@ -19,10 +21,11 @@ public abstract class Task {
      *
      * @param taskType    The type of the task.
      */
-    public Task(String description, TaskType taskType) {
+    public Task(String description, TaskType taskType, String... tags) {
         this.description = description;
         this.isCompleted = false;
         this.taskType = taskType;
+        this.tags = tags;
     }
 
     /**
@@ -38,13 +41,20 @@ public abstract class Task {
         try {
             Task task = null;
             if (tokens[0].equals("D")) {
-                task = new Deadline(tokens[2], LocalDateTime.parse(tokens[3]));
+                String description = tokens[2];
+                LocalDateTime deadline = LocalDateTime.parse(tokens[4]);
+                String[] tags = tokens[3].split(" ");
+                task = new Deadline(description, deadline, tags);
             } else if (tokens[0].equals("E")) {
-                task = new Event(tokens[2],
-                        LocalDateTime.parse(tokens[3]),
-                        LocalDateTime.parse(tokens[4]));
+                String description = tokens[2];
+                LocalDateTime start = LocalDateTime.parse(tokens[4]);
+                LocalDateTime end = LocalDateTime.parse(tokens[5]);
+                String[] tags = tokens[3].split(" ");
+                task = new Event(description, start, end, tags);
             } else {
-                task = new ToDo(tokens[2]);
+                String description = tokens[2];
+                String[] tags = tokens[3].split(" ");
+                task = new ToDo(description, tags);
             }
             if (tokens[1].equals("1") && task != null) {
                 task.toggleCompletion();
@@ -77,7 +87,7 @@ public abstract class Task {
      * @return The task in storage format.
      */
     public String toStorageFormat() {
-        return (isCompleted ? "1" : "0") + " | " + description;
+        return (isCompleted ? "1" : "0") + " | " + description + " | " + getTags();
     }
 
     /**
@@ -99,12 +109,24 @@ public abstract class Task {
     }
 
     /**
+     * Returns the tags of the task.
+     *
+     * @return String of the tags of the task.
+     */
+    public String getTags() {
+        if (tags.length == 0) {
+            return "";
+        }
+        return String.join(" ", Arrays.stream(tags).map(tag -> !tag.isEmpty() ? "#" + tag : "").toArray(String[]::new));
+    }
+
+    /**
      * Returns the task in a string format.
      *
      * @return The task in string format.
      */
     @Override
     public String toString() {
-        return "[" + (isCompleted ? "X" : " ") + "]  " + description;
+        return "[" + (isCompleted ? "X" : " ") + "]  " + description + "\n" + getTags();
     };
 }

@@ -12,8 +12,8 @@ public class Event extends Task {
     /**
      * Constructor for Event class.
      */
-    public Event(String description, LocalDateTime start, LocalDateTime end) {
-        super(description, TaskType.EVENT);
+    public Event(String description, LocalDateTime start, LocalDateTime end, String... tags) {
+        super(description, TaskType.EVENT, tags);
         this.start = start;
         this.end = end;
     }

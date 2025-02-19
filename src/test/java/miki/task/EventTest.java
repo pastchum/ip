@@ -18,7 +18,7 @@ public class EventTest {
             System.out.println(task.toString());
             System.out.println(task.toStorageFormat());
 
-            assertEquals("[E] " + "[ ]  Test" + "\n"
+            assertEquals("[E] " + "[ ]  Test" + "\n" + "\n"
                     + "        From  21 AUGUST 2021, 18:00  to  21 AUGUST 2021, 20:00",
                     task.toString());
         } catch (Error e) {
@@ -34,7 +34,7 @@ public class EventTest {
             LocalDateTime end = LocalDateTime.parse("2021-08-21T20:00");
             Task task = new Event("Test", start, end);
 
-            assertEquals("E | 0 | Test | 2021-08-21T18:00 | 2021-08-21T20:00", task.toStorageFormat());
+            assertEquals("E | 0 | Test |  | 2021-08-21T18:00 | 2021-08-21T20:00", task.toStorageFormat());
         } catch (Error e) {
             fail();
         }
