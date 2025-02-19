@@ -7,7 +7,7 @@ import miki.task.Task;
 import miki.task.TaskList;
 
 /**
- * Ui class to handle all user interface interactions
+ * Ui class to handle all user interface interactions.
  */
 public class Ui {
     private Scanner sc;
@@ -20,7 +20,10 @@ public class Ui {
     }
 
     /**
-     * Method to show loading error
+     * Displays a loading error if tasks fail to load from file in the CLI.
+     * Returns a string containing the error message for the GUI to display.
+     *
+     * @returns String containing error message
      */
     public String showLoadingError() {
         String error = "Error loading tasks from file. Starting with an empty task list.";
@@ -29,7 +32,10 @@ public class Ui {
     }
 
     /**
-     * Method to show line
+     * Displays a line in the CLI.
+     * Returns a string containing a line for the GUI to display.
+     *
+     * @returns String containing a line.
      */
     public String showLine() {
         String line = "____________________________________________________________";
@@ -38,7 +44,10 @@ public class Ui {
     }
 
     /**
-     * Method to show intro
+     * Displays the intro in the CLI.
+     * Returns a string containing the intro for the GUI to display.
+     *
+     * @returns String containing the intro.
      */
     public String showIntro() {
         String logo = "      __  _________ __ ____\n"
@@ -63,18 +72,22 @@ public class Ui {
     }
 
     /**
-     * Method to read command
+     * Reads the next command from the CLI.
+     * Returns a string containing the input from the user.
      *
-     * @return String containing user's input command
+     * @returns String containing input.
      */
     public String readCommand() {
         return sc.nextLine();
     }
 
     /**
-     * Method to show error message
+     * Displays the error message in the CLI.
+     * Returns a string containing the error message for the GUI to display.
      *
-     * @param errorMessage String containing error message
+     * @param errorMessage String containing the error message.
+     *
+     * @returns String containing the error message.
      */
     public String showErrorMessage(String errorMessage) {
         System.out.println("Error Occured Dawg.\n" + errorMessage);
@@ -82,10 +95,13 @@ public class Ui {
     }
 
     /**
-     * Method to show task added
+     * Displays the task added in the CLI.
+     * Returns a string containing the task added for the GUI to display.
      *
      * @param task        Task object containing task added
      * @param sizeOfTasks Integer containing size of task list
+     *
+     * @returns String to display the task added.
      */
     public String showTaskAdded(Task task, int sizeOfTasks) {
         String output = task.getTaskType().toString()
@@ -97,10 +113,13 @@ public class Ui {
     }
 
     /**
-     * Method to show task deleted
+     * Displays the task deleted in the CLI.
+     * Returns a string containing the task deleted for the GUI to display.
      *
      * @param task      Task object containing task deleted
      * @param taskIndex Integer containing task number
+     *
+     * @returns String to display the task deleted.
      */
     public String showTaskDeleted(Task task, int taskIndex) {
         String output = "Task " + taskIndex + " has been deleted Dawg.\n"
@@ -110,9 +129,12 @@ public class Ui {
     }
 
     /**
-     * Method to show list of tasks
+     * Displays the list of tasks in the CLI.
+     * Returns a string containing the list of tasks for the GUI to display.
      *
      * @param tasks TaskList object containing list of tasks
+     *
+     * @returns String to display the list of tasks.
      */
     public String showList(TaskList tasks) {
         if (tasks.getSize() == 0) { // account for no tasks
@@ -130,10 +152,14 @@ public class Ui {
     }
 
     /**
-     * Method to show task marked
+     * Displays the completion status of a given task in the CLI.
+     * Returns a string containing the completion status of the task for the GUI to
+     * display.
      *
      * @param task      Task object containing task marked
      * @param taskIndex Integer containing task number
+     *
+     * @returns String to display the completion status of the task.
      */
     public String showTaskCompletion(Task task, int taskIndex) {
         boolean isCompleted = task.checkCompleted();
@@ -144,7 +170,10 @@ public class Ui {
     }
 
     /**
-     * Method to show exit
+     * Displays the exit message in the CLI.
+     * Returns a string containing the exit message for the GUI to display.
+     *
+     * @returns String to display the exit message.
      */
     public String showExit() {
         String message = "End of session Dawg. Goodbye Dawg.\n";
