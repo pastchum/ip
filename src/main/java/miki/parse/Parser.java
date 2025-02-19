@@ -188,7 +188,9 @@ public class Parser {
         LocalDateTime startDate = null;
 
         // parse end date
-        String endDateString = taskDetails[2].trim();
+        String endDateString = taskDetails[2].split("/tags", 2)[0].trim();
+        System.out.println(endDateString);
+        System.out.println(startDateString);
         LocalDateTime endDate = null;
         try {
             startDate = DateParser.parseDate(startDateString);
@@ -199,7 +201,7 @@ public class Parser {
         }
 
         String description = parseDescription(taskDetails[0]);
-        String[] tags = parseTags(taskDetails[0]);
+        String[] tags = parseTags(taskDetails[2]);
 
         return new AddEventCommand(description,
                 startDate,
@@ -222,7 +224,7 @@ public class Parser {
         String[] taskDetails = tokens[1].split("/by", 2);
         assert taskDetails.length == 2 : "Deadline command must have a description and deadline date";
 
-        String deadlineDateString = taskDetails[1].trim();
+        String deadlineDateString = taskDetails[1].split("/tags", 2)[0].trim();
         // parse deadline date
         LocalDateTime deadlineDate = null;
         try {
@@ -231,7 +233,7 @@ public class Parser {
             throw new DeadlineException(e.getMessage());
         }
         String description = parseDescription(taskDetails[0]);
-        String[] tags = parseTags(taskDetails[0]);
+        String[] tags = parseTags(taskDetails[1]);
         return new AddDeadlineCommand(description,
                 deadlineDate,
                 tags);

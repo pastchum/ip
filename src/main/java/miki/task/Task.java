@@ -41,13 +41,20 @@ public abstract class Task {
         try {
             Task task = null;
             if (tokens[0].equals("D")) {
-                task = new Deadline(tokens[2], LocalDateTime.parse(tokens[3]));
+                String description = tokens[2];
+                LocalDateTime deadline = LocalDateTime.parse(tokens[4]);
+                String[] tags = tokens[3].split(" ");
+                task = new Deadline(description, deadline, tags);
             } else if (tokens[0].equals("E")) {
-                task = new Event(tokens[2],
-                        LocalDateTime.parse(tokens[3]),
-                        LocalDateTime.parse(tokens[4]));
+                String description = tokens[2];
+                LocalDateTime start = LocalDateTime.parse(tokens[4]);
+                LocalDateTime end = LocalDateTime.parse(tokens[5]);
+                String[] tags = tokens[3].split(" ");
+                task = new Event(description, start, end, tags);
             } else {
-                task = new ToDo(tokens[2]);
+                String description = tokens[2];
+                String[] tags = tokens[3].split(" ");
+                task = new ToDo(description, tags);
             }
             if (tokens[1].equals("1") && task != null) {
                 task.toggleCompletion();
@@ -80,7 +87,7 @@ public abstract class Task {
      * @return The task in storage format.
      */
     public String toStorageFormat() {
-        return (isCompleted ? "1" : "0") + " | " + description;
+        return (isCompleted ? "1" : "0") + " | " + description + " | " + getTags();
     }
 
     /**
@@ -107,7 +114,10 @@ public abstract class Task {
      * @return String of the tags of the task.
      */
     public String getTags() {
-        return String.join(" ", Arrays.stream(tags).map(tag -> "#" + tag).toArray(String[]::new));
+        if (tags.length == 0) {
+            return "";
+        }
+        return String.join(" ", Arrays.stream(tags).map(tag -> !tag.isEmpty() ? "#" + tag : "").toArray(String[]::new));
     }
 
     /**
