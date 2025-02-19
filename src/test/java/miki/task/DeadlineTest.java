@@ -17,7 +17,7 @@ public class DeadlineTest {
             System.out.println(task.toString());
             System.out.println(task.toStorageFormat());
 
-            assertEquals("[D] " + "[ ]  Test" + "\n"
+            assertEquals("[D] " + "[ ]  Test" + "\n" + "\n"
                     + "        Deadline: 21 AUGUST 2021, 20:00",
                     task.toString());
         } catch (Error e) {
@@ -32,7 +32,7 @@ public class DeadlineTest {
             LocalDateTime deadline = LocalDateTime.parse("2021-08-21T20:00");
             Task task = new Deadline("Test", deadline);
 
-            assertEquals("D | 0 | Test | 2021-08-21T20:00", task.toStorageFormat());
+            assertEquals("D | 0 | Test |  | 2021-08-21T20:00", task.toStorageFormat());
         } catch (Error e) {
             fail();
         }

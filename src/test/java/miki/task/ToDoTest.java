@@ -12,7 +12,7 @@ public class ToDoTest {
             // Test Task
             Task task = new ToDo("Test");
 
-            assertEquals("[T] " + "[ ]  Test" + "\n", task.toString());
+            assertEquals("[T] " + "[ ]  Test" + "\n" + "\n" , task.toString());
         } catch (Error e) {
             fail();
         }
@@ -24,7 +24,7 @@ public class ToDoTest {
             // Test Task
             Task task = new ToDo("Test");
 
-            assertEquals("T | 0 | Test", task.toStorageFormat());
+            assertEquals("T | 0 | Test | ", task.toStorageFormat());
         } catch (Error e) {
             fail();
         }
