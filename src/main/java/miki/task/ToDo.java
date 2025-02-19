@@ -7,8 +7,8 @@ public class ToDo extends Task {
     /*
      * Constructor for ToDo class.
      */
-    public ToDo(String description) {
-        super(description, TaskType.TODO);
+    public ToDo(String description, String... tags) {
+        super(description, TaskType.TODO, tags);
     }
 
     /**

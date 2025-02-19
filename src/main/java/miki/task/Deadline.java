@@ -11,8 +11,8 @@ public class Deadline extends Task {
     /**
      * Constructor for Deadline class.
      */
-    public Deadline(String description, LocalDateTime deadline) {
-        super(description, TaskType.DEADLINE);
+    public Deadline(String description, LocalDateTime deadline, String... tags) {
+        super(description, TaskType.DEADLINE, tags);
         this.deadline = deadline;
     }
 

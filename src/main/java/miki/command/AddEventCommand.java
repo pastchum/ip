@@ -16,6 +16,7 @@ public class AddEventCommand extends Command {
     private String description;
     private LocalDateTime start;
     private LocalDateTime end;
+    private String[] tags;
 
     /**
      * Constructor for AddEventCommand.
@@ -23,12 +24,14 @@ public class AddEventCommand extends Command {
      * @param description Description of the event task.
      * @param start       Start time of the event task.
      * @param end         End time of the event task.
+     * @param tags        Tags of the event task.
      */
-    public AddEventCommand(String description, LocalDateTime start, LocalDateTime end) {
+    public AddEventCommand(String description, LocalDateTime start, LocalDateTime end, String... tags) {
         super(false);
         this.description = description;
         this.start = start;
         this.end = end;
+        this.tags = tags;
     }
 
     /**
@@ -37,11 +40,14 @@ public class AddEventCommand extends Command {
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.
+     *
+     * @return The output of the execution
+     *
      * @throws MikiException If an error occurs during the execution of the command.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
-        Task task = new Event(description, start, end);
+        Task task = new Event(description, start, end, tags);
         assert task != null : "Task should not be null";
 
         tasks.addTask(task);

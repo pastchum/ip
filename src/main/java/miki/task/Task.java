@@ -1,6 +1,7 @@
 package miki.task;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import miki.exception.MikiException;
 
@@ -11,6 +12,7 @@ public abstract class Task {
     private String description;
     private boolean isCompleted;
     private TaskType taskType;
+    private String[] tags;
 
     /**
      * Constructor for Task.
@@ -19,10 +21,11 @@ public abstract class Task {
      *
      * @param taskType    The type of the task.
      */
-    public Task(String description, TaskType taskType) {
+    public Task(String description, TaskType taskType, String... tags) {
         this.description = description;
         this.isCompleted = false;
         this.taskType = taskType;
+        this.tags = tags;
     }
 
     /**
@@ -99,12 +102,21 @@ public abstract class Task {
     }
 
     /**
+     * Returns the tags of the task.
+     *
+     * @return String of the tags of the task.
+     */
+    public String getTags() {
+        return String.join(" ", Arrays.stream(tags).map(tag -> "#" + tag).toArray(String[]::new));
+    }
+
+    /**
      * Returns the task in a string format.
      *
      * @return The task in string format.
      */
     @Override
     public String toString() {
-        return "[" + (isCompleted ? "X" : " ") + "]  " + description;
+        return "[" + (isCompleted ? "X" : " ") + "]  " + description + "\n" + getTags();
     };
 }

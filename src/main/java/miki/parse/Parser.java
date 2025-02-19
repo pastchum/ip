@@ -181,6 +181,7 @@ public class Parser {
             throw new EventException("Incorrect fromat for Event command");
         }
         String[] taskDetails = tokens[1].split("/from|/to", 3);
+        assert taskDetails.length == 3 : "Event command must have a description, start date and end date";
 
         // parse start date
         String startDateString = taskDetails[1].trim();
@@ -197,9 +198,13 @@ public class Parser {
             throw new EventException(e.getMessage());
         }
 
-        return new AddEventCommand(taskDetails[0].trim(),
+        String description = parseDescription(taskDetails[0]);
+        String[] tags = parseTags(taskDetails[0]);
+
+        return new AddEventCommand(description,
                 startDate,
-                endDate);
+                endDate,
+                tags);
     }
 
     /**
@@ -215,6 +220,8 @@ public class Parser {
             throw new DeadlineException("Incorrect format for Deadline command");
         }
         String[] taskDetails = tokens[1].split("/by", 2);
+        assert taskDetails.length == 2 : "Deadline command must have a description and deadline date";
+
         String deadlineDateString = taskDetails[1].trim();
         // parse deadline date
         LocalDateTime deadlineDate = null;
@@ -223,8 +230,11 @@ public class Parser {
         } catch (Exception e) {
             throw new DeadlineException(e.getMessage());
         }
-        return new AddDeadlineCommand(taskDetails[0].trim(),
-                deadlineDate);
+        String description = parseDescription(taskDetails[0]);
+        String[] tags = parseTags(taskDetails[0]);
+        return new AddDeadlineCommand(description,
+                deadlineDate,
+                tags);
     }
 
     /**
@@ -236,8 +246,35 @@ public class Parser {
      */
     public static AddToDoCommand handleToDoCommand(String line) throws MikiException {
         String[] tokens = line.split(" ", 2);
-        assert tokens.length == 2 : "ToDo command should have 2 arguments";
+        assert tokens.length == 2 : "ToDo command needs a description";
+        String description = parseDescription(tokens[1]);
+        String[] tags = parseTags(tokens[1]);
 
-        return new AddToDoCommand(tokens[1].trim());
+        return new AddToDoCommand(description, tags);
+    }
+
+    /**
+     * Parses the tags from the user input.
+     *
+     * @param line
+     * @return String array of tags
+     */
+    public static String[] parseTags(String line) {
+        String[] tokens = line.split("/tags", 2);
+        if (tokens.length == 1) {
+            return new String[0];
+        }
+        return tokens[1].trim().split(" ");
+    }
+
+    /**
+     * Parses the description from the user input.
+     *
+     * @param line
+     * @return String of description
+     */
+    public static String parseDescription(String line) {
+        String[] tokens = line.split("/tags", 2);
+        return tokens[0].trim();
     }
 }

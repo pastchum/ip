@@ -12,15 +12,18 @@ import miki.ui.Ui;
  */
 public class AddToDoCommand extends Command {
     private String description;
+    private String[] tags;
 
     /**
      * Constructor for AddToDoCommand.
      *
      * @param description Description of the ToDo task.
+     * @param tags        Tags of the ToDo task.
      */
-    public AddToDoCommand(String description) {
+    public AddToDoCommand(String description, String... tags) {
         super(false);
         this.description = description;
+        this.tags = tags;
     }
 
     /**
@@ -29,11 +32,14 @@ public class AddToDoCommand extends Command {
      * @param tasks   List of tasks.
      * @param ui      Ui object.
      * @param storage Storage object.
+     *
+     * @return The output of the execution
+     *
      * @throws MikiException If an error occurs during the execution of the command.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MikiException {
-        Task task = new ToDo(description);
+        Task task = new ToDo(description, tags);
         assert task != null : "Task should not be null";
 
         tasks.addTask(task);
