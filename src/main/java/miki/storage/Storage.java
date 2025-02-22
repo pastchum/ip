@@ -39,6 +39,10 @@ public class Storage {
         try {
             File file = new File(filePath);
             if (!file.exists()) {
+                File parentDir = file.getParentFile();
+                if (parentDir != null && !parentDir.exists()) {
+                    parentDir.mkdirs();
+                }
                 file.createNewFile();
                 return tasks;
             }
