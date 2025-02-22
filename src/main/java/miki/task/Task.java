@@ -43,22 +43,22 @@ public abstract class Task {
             if (tokens[0].equals("D")) {
                 String description = tokens[2];
                 LocalDateTime deadline = LocalDateTime.parse(tokens[4]);
-                String[] tags = tokens.length > 3 
-                    ? tokens[3].split(" ") 
+                String[] tags = tokens.length > 3
+                    ? tokens[3].split(" ")
                     : new String[0];
                 task = new Deadline(description, deadline, tags);
             } else if (tokens[0].equals("E")) {
                 String description = tokens[2];
                 LocalDateTime start = LocalDateTime.parse(tokens[4]);
                 LocalDateTime end = LocalDateTime.parse(tokens[5]);
-                String[] tags = tokens.length > 3 
-                    ? tokens[3].split(" ") 
+                String[] tags = tokens.length > 3
+                    ? tokens[3].split(" ")
                     : new String[0];
                 task = new Event(description, start, end, tags);
             } else {
                 String description = tokens[2];
-                String[] tags = tokens.length > 3 
-                    ? tokens[3].split(" ") 
+                String[] tags = tokens.length > 3
+                    ? tokens[3].split(" ")
                     : new String[0];
                 task = new ToDo(description, tags);
             }
