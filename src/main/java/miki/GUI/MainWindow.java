@@ -50,6 +50,9 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getMikiDialog(response, mikiImage));
+        if (miki.checkExit()) {
+            miki.scheduleExit(5);
+        }
         userInput.clear();
     }
 }
