@@ -45,6 +45,7 @@ public class MarkCommand extends Command {
         }
         task.toggleCompletion();
         String output = ui.showTaskCompletion(task, taskNumber);
+        storage.save(tasks.getTaskList());
         return output;
     }
 }

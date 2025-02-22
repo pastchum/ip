@@ -87,7 +87,7 @@ public abstract class Task {
      * @return The task in storage format.
      */
     public String toStorageFormat() {
-        return (isCompleted ? "1" : "0") + " | " + description + " | " + getTags();
+        return (isCompleted ? "1" : "0") + " | " + description + " | " + getTagsToStorageFormat();
     }
 
     /**
@@ -119,6 +119,19 @@ public abstract class Task {
         }
         return String.join(" ", Arrays.stream(tags).map(tag -> !tag.isEmpty() ? "#" + tag : "").toArray(String[]::new));
     }
+
+    /**
+     * Returns the tags of the task.
+     *
+     * @return String of the tags of the task in storage format.
+     */
+    public String getTagsToStorageFormat() {
+        if (tags.length == 0) {
+            return "";
+        }
+        return String.join(" ", Arrays.stream(tags).map(tag -> !tag.isEmpty() ? tag : "").toArray(String[]::new));
+    }
+
 
     /**
      * Returns the task in a string format.

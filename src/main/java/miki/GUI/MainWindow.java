@@ -35,6 +35,7 @@ public class MainWindow extends AnchorPane {
     /** Injects the Miki instance */
     public void setMiki(Miki m) {
         miki = m;
+        dialogContainer.getChildren().add(DialogBox.getMikiDialog(miki.getGreeting(), mikiImage));
     }
 
     /**

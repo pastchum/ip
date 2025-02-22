@@ -29,9 +29,7 @@ Example: `todo Buy groceries /tags shopping`
 
 Adds a todo task with the given description and any additional tags provided.
 
-```
-expected output
-```
+![MIKI todo](docs/images/todo.png)
 
 ## Adding deadlines
 
@@ -43,9 +41,7 @@ Example: `deadline Finish my homework /by 25-03-2025 18:00 /tags school`
 
 Adds a deadline task with the given description and deadline, as well as any additional tags provided.
 
-```
-expected output
-```
+![MIKI deadline](docs/images/deadline.png)
 
 ## Adding events
 
@@ -57,9 +53,7 @@ Example: `event Attend meeting /from 25-03-2025 14:00 /to 25-03-2025 16:00 /tags
 
 Adds an event task with the given description and event date, as well as any additional tags provided.
 
-```
-expected output
-```
+![MIKI event](docs/images/event.png)
 
 ## Listing tasks
 
@@ -69,9 +63,7 @@ Format: `list`
 
 Displays all the tasks in the order they were added.
 
-```
-expected output
-```
+![MIKI list](docs/images/list.png)
 
 ## Finding tasks
 
@@ -83,9 +75,7 @@ Example: `find groceries`
 
 Displays all tasks that contain the given keyword in their description.
 
-```
-expected output
-```
+![MIKI find](docs/images/find.png)
 
 ## Deleting tasks
 
@@ -97,9 +87,7 @@ Example: `delete 2`
 
 Deletes the task with the given task number.
 
-```
-expected output
-```
+![MIKI delete](docs/images/delete.png)
 
 ## Marking tasks as done
 
@@ -111,9 +99,7 @@ Example: `mark 1`
 
 Marks the task with the given task number as done.
 
-```
-expected output
-```
+![MIKI mark](docs/images/mark.png)
 
 ## Unmarking tasks
 
@@ -125,9 +111,7 @@ Example: `unmark 1`
 
 Unmarks the task with the given task number.
 
-```
-expected output
-```
+![MIKI unmark](docs/images/unmark.png)
 
 ## Exit the chatbot
 
@@ -137,9 +121,7 @@ Format: `bye`
 
 Closes the chatbot.
 
-```
-expected output
-```
+![MIKI bye](docs/images/bye.png)
 
 ## Saved tasks between sessions
 

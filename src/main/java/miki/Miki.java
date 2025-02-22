@@ -32,6 +32,13 @@ public class Miki {
         }
     }
 
+    /**
+     * Returns the response from a given user input.
+     *
+     * @param input The user input.
+     *
+     * @return The response from Miki.
+     */
     public String getResponse(String input) {
         try {
             Command command = Parser.handleUserCommand(input);
@@ -47,9 +54,25 @@ public class Miki {
         }
     }
 
+    /**
+     * Returns the greeting message from Miki.
+     *
+     * @return The greeting message from Miki.
+     */
+    public String getGreeting() {
+        return ui.showGreeting();
+    }
+
+    /**
+     * Checks if the user has requested to exit the chatbot.
+     *
+     * @return True if the user has requested to exit the chatbot, false otherwise.
+     */
     public boolean checkExit() {
         return isExit;
     }
+
+
 
     /**
      * Runs the Miki chatbot. (This method is only used for the CLI version of Miki)
