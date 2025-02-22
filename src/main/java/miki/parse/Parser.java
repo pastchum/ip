@@ -19,6 +19,7 @@ import miki.exception.EventException;
 import miki.exception.InvalidTaskException;
 import miki.exception.MikiException;
 import miki.exception.NoCommandException;
+import miki.exception.ToDoException;
 
 /**
  * Parser class handles the parsing of user input.
@@ -248,7 +249,9 @@ public class Parser {
      */
     public static AddToDoCommand handleToDoCommand(String line) throws MikiException {
         String[] tokens = line.split(" ", 2);
-        assert tokens.length == 2 : "ToDo command needs a description";
+        if (tokens.length != 2) {
+            throw new ToDoException("ToDo command needs a description");
+        }
         String description = parseDescription(tokens[1]);
         String[] tags = parseTags(tokens[1]);
 

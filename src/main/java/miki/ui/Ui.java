@@ -72,6 +72,18 @@ public class Ui {
     }
 
     /**
+     * Displays the greeting in the CLI.
+     * Returns a string containing the greeting for the GUI to display.
+     *
+     * @returns String containing the greeting.
+     */
+    public String showGreeting() {
+        String greeting = "What's good Dawg! Whatchu need?";
+        System.out.println(greeting);
+        return greeting;
+    }
+
+    /**
      * Reads the next command from the CLI.
      * Returns a string containing the input from the user.
      *
