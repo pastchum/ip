@@ -128,7 +128,3 @@ Closes the chatbot.
 Your tasks are automatically saved between sessions, so you don't have to worry about losing your data. Dawg's got you covered.
 
 Whenever you start MIKI, it will load all your previously saved tasks, ensuring you can pick up right where you left off.
-
-```
-expected output
-```
