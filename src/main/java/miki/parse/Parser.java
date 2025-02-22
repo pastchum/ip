@@ -35,6 +35,7 @@ public class Parser {
      * @throws MikiException if the user input is invalid.
      */
     public static Command handleUserCommand(String line) throws MikiException {
+        line = line.trim();
         // empty input
         if (line.isEmpty()) {
             throw new NoCommandException("No command received Dawg. Try that again.");

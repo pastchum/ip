@@ -39,6 +39,10 @@ public class Storage {
         try {
             File file = new File(filePath);
             if (!file.exists()) {
+                File parentDir = file.getParentFile();
+                if (parentDir != null && !parentDir.exists()) {
+                    parentDir.mkdirs();
+                }
                 file.createNewFile();
                 return tasks;
             }
@@ -46,6 +50,7 @@ public class Storage {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) {
+                System.out.println(line);
                 tasks.add(Task.parseTaskFromFile(line));
             }
             br.close();

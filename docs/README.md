@@ -18,7 +18,7 @@
 
 # Introduction
 
-![MIKI logo](src/main/resources/images/DaDog.png)
+![MIKI logo](../src/main/resources/images/DaDog.png)
 _Your DAWG Chatbot_
 
 Get yourself a real dawg that helps you settle all your tasks and what not.
@@ -49,7 +49,7 @@ Example: `todo Buy groceries /tags shopping`
 
 Adds a todo task with the given description and any additional tags provided.
 
-![MIKI todo](docs/images/todo.png)
+![MIKI todo](images/todo.png)
 
 ## Adding deadlines `deadline`
 
@@ -61,7 +61,7 @@ Example: `deadline Finish my homework /by 25-03-2025 18:00 /tags school`
 
 Adds a deadline task with the given description and deadline, as well as any additional tags provided.
 
-![MIKI deadline](docs/images/deadline.png)
+![MIKI deadline](images/deadline.png)
 
 ## Adding events `event`
 
@@ -73,7 +73,7 @@ Example: `event Attend meeting /from 25-03-2025 14:00 /to 25-03-2025 16:00 /tags
 
 Adds an event task with the given description and event date, as well as any additional tags provided.
 
-![MIKI event](docs/images/event.png)
+![MIKI event](images/event.png)
 
 ## Listing tasks `list`
 
@@ -83,7 +83,7 @@ Format: `list`
 
 Displays all the tasks in the order they were added.
 
-![MIKI list](docs/images/list.png)
+![MIKI list](images/list.png)
 
 ## Finding tasks `find`
 
@@ -95,7 +95,7 @@ Example: `find groceries`
 
 Displays all tasks that contain the given keyword in their description.
 
-![MIKI find](docs/images/find.png)
+![MIKI find](images/find.png)
 
 ## Deleting tasks `delete`
 
@@ -107,7 +107,7 @@ Example: `delete 2`
 
 Deletes the task with the given task number.
 
-![MIKI delete](docs/images/delete.png)
+![MIKI delete](images/delete.png)
 
 ## Marking tasks as done `mark`
 
@@ -119,7 +119,7 @@ Example: `mark 1`
 
 Marks the task with the given task number as done.
 
-![MIKI mark](docs/images/mark.png)
+![MIKI mark](images/mark.png)
 
 ## Unmarking tasks `unmark`
 
@@ -131,7 +131,7 @@ Example: `unmark 1`
 
 Unmarks the task with the given task number.
 
-![MIKI unmark](docs/images/unmark.png)
+![MIKI unmark](images/unmark.png)
 
 ## Exit the chatbot `bye`
 
@@ -141,7 +141,7 @@ Format: `bye`
 
 Closes the chatbot.
 
-![MIKI bye](docs/images/bye.png)
+![MIKI bye](images/bye.png)
 
 ## Saved tasks between sessions
 

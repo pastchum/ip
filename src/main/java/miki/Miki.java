@@ -1,5 +1,9 @@
 package miki;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import miki.command.Command;
 import miki.exception.MikiException;
 import miki.parse.Parser;
@@ -73,6 +77,18 @@ public class Miki {
     }
 
 
+    /**
+     * Schedules the application to exit after the specified delay.
+     *
+     * @param delayInSeconds The delay in seconds before the application exits.
+     */
+    public void scheduleExit(int delayInSeconds) {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.schedule(() -> {
+            System.out.println("Exiting application...");
+            System.exit(0);
+        }, delayInSeconds, TimeUnit.SECONDS);
+    }
 
     /**
      * Runs the Miki chatbot. (This method is only used for the CLI version of Miki)
@@ -88,6 +104,7 @@ public class Miki {
                 command.execute(tasks, ui, storage);
                 if (command.checkExit()) {
                     ui.showExit();
+                    scheduleExit(5);
                     break;
                 }
             } catch (MikiException e) {
