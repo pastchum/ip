@@ -18,7 +18,7 @@
 
 # Introduction
 
-![MIKI logo](../src/main/resources/images/DaDog.png)
+![MIKI logo](images/DaDog.png)
 _Your DAWG Chatbot_
 
 Get yourself a real dawg that helps you settle all your tasks and what not.
@@ -39,15 +39,28 @@ Everyone loves MIKI. 🐕
 
 # Commands
 
+The format for commands is as follows:
+
+```
+COMMAND {ARGS}
+```
+
+The detailed breakdown for each one is as follows below.
+
+Things to note:
+
+- Follow the order of the parameters.
+
 ## Adding todos `todo`
 
 Add a todo task to let Miki keep track of your tasks. Dawg's got your back.
 
-Format: `todo {description} /tags {tags}`
+Format: `todo {DESCRIPTION} /tags {TAG}`
 
 Example: `todo Buy groceries /tags shopping`
 
-Adds a todo task with the given description and any additional tags provided.
+Adds a todo task with the given description and any additional tags provided (with /tag {TAG}).
+You can put as many tags as you like.
 
 ![MIKI todo](images/todo.png)
 
@@ -55,11 +68,12 @@ Adds a todo task with the given description and any additional tags provided.
 
 Add a deadline task to let Miki remind you that you have a deadline to complete. Dawg won't let you down.
 
-Format: `deadline {description} /by {deadline date} /tags {tags}`
+Format: `deadline {DESCRIPTION} /by {DEADLINE DATE} /tags {TAG}`
 
 Example: `deadline Finish my homework /by 25-03-2025 18:00 /tags school`
 
-Adds a deadline task with the given description and deadline, as well as any additional tags provided.
+Adds a deadline task with the given description and deadline, as well as any additional tags provided (with /tag {TAG}).
+You can put as many tags as you like.
 
 ![MIKI deadline](images/deadline.png)
 
@@ -67,11 +81,12 @@ Adds a deadline task with the given description and deadline, as well as any add
 
 Add an event task to let Miki remind you of your events. Dawg won't let you miss it.
 
-Format: `event {description} /from {start date} /to {end date} /tags {tags}`
+Format: `event {DESCRIPTION} /from {START DATE} /to {END DATE} /tags {TAG}`
 
 Example: `event Attend meeting /from 25-03-2025 14:00 /to 25-03-2025 16:00 /tags work`
 
-Adds an event task with the given description and event date, as well as any additional tags provided.
+Adds an event task with the given description and event date, as well as any additional tags provided (with /tag {TAG}).
+You can put as many tags as you like.
 
 ![MIKI event](images/event.png)
 
@@ -89,7 +104,7 @@ Displays all the tasks in the order they were added.
 
 Find tasks that match a given keyword. Dawg will find it for you.
 
-Format: `find {keyword}`
+Format: `find {KEYWORD}`
 
 Example: `find groceries`
 
@@ -101,7 +116,7 @@ Displays all tasks that contain the given keyword in their description.
 
 Delete a task that Miki is keeping track of. Dawg will let it go.
 
-Format: `delete {task number}`
+Format: `delete {TASK NUMBER}`
 
 Example: `delete 2`
 
@@ -113,7 +128,7 @@ Deletes the task with the given task number.
 
 Mark a task as done to let Miki know you've completed it. Dawg will be proud.
 
-Format: `mark {task number}`
+Format: `mark {TASK NUMBER}`
 
 Example: `mark 1`
 
@@ -125,7 +140,7 @@ Marks the task with the given task number as done.
 
 Unmark a task to let Miki know it's not done yet. Dawg will understand.
 
-Format: `unmark {task number}`
+Format: `unmark {TASK NUMBER}`
 
 Example: `unmark 1`
 
